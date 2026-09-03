@@ -2,634 +2,106 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Équations du second degré interactives – 4e secondaire</title>
-
 <style>
 :root{
-  --navy:#102f46;
-  --navy2:#173f5c;
-  --blue:#287fc1;
-  --blue2:#62afe2;
-  --light:#eaf5fc;
-  --white:#fff;
-  --green:#20864e;
-  --greenLight:#e7f7ee;
-  --orange:#e98916;
-  --orangeLight:#fff2dc;
-  --red:#c73d3d;
-  --redLight:#fdeaea;
-  --purple:#6848b8;
-  --purpleLight:#eee8ff;
-  --text:#173246;
-  --muted:#647987;
-  --border:#cbdce8;
-  --bg:#f4f8fb;
-  --shadow:0 8px 26px rgba(16,47,70,.1)
+  --navy:#102f46;--blue:#287fc1;--blue2:#66b3e6;--light:#eaf5fc;
+  --green:#20864e;--greenL:#e8f7ee;--orange:#e98916;--orangeL:#fff2db;
+  --red:#c63b3b;--redL:#fdeaea;--purple:#6849b8;--purpleL:#eee8ff;
+  --text:#173246;--muted:#687d8b;--border:#cbdce8;--bg:#f4f8fb;--white:#fff;
+  --shadow:0 8px 26px rgba(16,47,70,.10)
 }
-
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.55
-}
-
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
 button,input,select,textarea{font:inherit}
-
 button{cursor:pointer}
-
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible,
-summary:focus-visible{
-  outline:3px solid #ffbd40;
-  outline-offset:3px
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
+  outline:3px solid #ffbd40;outline-offset:3px
 }
-
-header{
-  position:sticky;
-  top:0;
-  z-index:50;
-  background:linear-gradient(135deg,var(--navy),#166493);
-  color:white;
-  box-shadow:0 3px 12px rgba(0,0,0,.15)
-}
-
-.header-inner{
-  max-width:1280px;
-  margin:auto;
-  padding:14px 18px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:18px
-}
-
-header h1{
-  margin:0;
-  font-size:1.18rem
-}
-
-.small{
-  font-size:.86rem;
-  color:var(--muted)
-}
-
-header .small{color:#dcedf8}
-
-.global-progress{
-  min-width:240px
-}
-
-.progress{
-  height:11px;
-  border-radius:999px;
-  background:#dbe7ee;
-  overflow:hidden
-}
-
+header{position:sticky;top:0;z-index:50;background:linear-gradient(135deg,var(--navy),#17618f);color:#fff;box-shadow:0 3px 12px rgba(0,0,0,.15)}
+.header-inner{max-width:1280px;margin:auto;padding:14px 18px;display:flex;justify-content:space-between;gap:20px;align-items:center}
+header h1{margin:0;font-size:1.18rem}
+.small{font-size:.86rem;color:var(--muted)}
+header .small{color:#dcecf7}
+.progressbox{min-width:250px}
+.progress{height:10px;border-radius:999px;background:#dce7ee;overflow:hidden}
 header .progress{background:#ffffff30}
-
-.progress>div{
-  height:100%;
-  width:0;
-  background:linear-gradient(90deg,var(--blue2),#61d79b);
-  transition:.3s
-}
-
-nav{
-  position:sticky;
-  top:74px;
-  z-index:40;
-  background:#fff;
-  border-bottom:1px solid var(--border);
-  overflow-x:auto
-}
-
-.nav-inner{
-  max-width:1280px;
-  margin:auto;
-  display:flex;
-  gap:5px;
-  padding:8px
-}
-
-.nav-inner button{
-  background:#fff;
-  color:var(--navy);
-  border:0;
-  border-radius:9px;
-  padding:10px 12px;
-  white-space:nowrap;
-  font-weight:700
-}
-
-.nav-inner button:hover,
-.nav-inner button.active{
-  background:var(--light);
-  color:#075d91
-}
-
-main{
-  max-width:1280px;
-  margin:24px auto;
-  padding:0 16px 80px
-}
-
-.page{display:none}
-.page.active{display:block}
-
-h2{
-  color:var(--navy);
-  margin-top:0;
-  font-size:1.9rem
-}
-
+.progress>div{height:100%;width:0;background:linear-gradient(90deg,#65b9eb,#5ed998);transition:.3s}
+nav{position:sticky;top:74px;z-index:40;background:#fff;border-bottom:1px solid var(--border);overflow-x:auto}
+.nav{max-width:1280px;margin:auto;padding:8px;display:flex;gap:5px}
+.nav button{border:0;background:#fff;color:var(--navy);border-radius:9px;padding:10px 12px;font-weight:700;white-space:nowrap}
+.nav button:hover,.nav button.active{background:var(--light);color:#075a8d}
+main{max-width:1280px;margin:24px auto;padding:0 16px 80px}
+.page{display:none}.page.active{display:block}
+h2{color:var(--navy);margin-top:0;font-size:1.9rem}
 h3,h4{color:var(--navy)}
-
-.panel,.card,.hero{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:17px;
-  box-shadow:var(--shadow)
+.hero,.panel,.card{background:#fff;border:1px solid var(--border);border-radius:17px;box-shadow:var(--shadow)}
+.hero{padding:30px}.panel{padding:22px;margin-bottom:18px}.card{padding:17px}
+.hero-grid,.grid2{display:grid;grid-template-columns:1.08fr 1fr;gap:24px;align-items:start}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.btn{border:0;border-radius:10px;min-height:44px;padding:11px 16px;font-weight:700}
+.btn-primary{background:var(--blue);color:#fff}.btn-success{background:var(--green);color:#fff}
+.btn-secondary{background:var(--light);color:#075a8d}.btn-warning{background:var(--orangeL);color:#815100;border:1px solid #efc275}
+.btn-danger{background:var(--redL);color:#9b2828}.btn-purple{background:var(--purpleL);color:#573aa1}
+.btn-dark{background:var(--navy);color:#fff}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.formula{font-family:Georgia,"Times New Roman",serif;font-size:1.24rem;text-align:center;background:#f2f6f9;padding:13px;border-radius:10px;margin:11px 0}
+.notice{padding:14px 16px;border-radius:10px;margin:12px 0}
+.info{background:var(--light);border-left:5px solid var(--blue)}
+.ok{background:var(--greenL);border-left:5px solid var(--green)}
+.warn{background:var(--orangeL);border-left:5px solid var(--orange)}
+.error{background:var(--redL);border-left:5px solid var(--red)}
+.chips{display:flex;flex-wrap:wrap;gap:7px}.chip,.badge{display:inline-block;padding:5px 10px;border-radius:999px;font-size:.82rem;font-weight:700}
+.chip{background:var(--light)}.badge-blue{background:#dff2ff;color:#075b92}.badge-green{background:#e5f6ed;color:#126b43}
+.badge-orange{background:#fff0d5;color:#875400}.badge-purple{background:#eee8ff;color:#593ca3}.badge-red{background:#fdeaea;color:#9d2929}
+input[type=text],input[type=number],input[type=password],select,textarea{
+  min-height:44px;border:1px solid #9eb9ca;border-radius:8px;padding:10px;background:#fff;color:var(--text)
 }
-
-.hero{padding:30px}
-.panel{padding:22px;margin-bottom:18px}
-.card{padding:17px}
-
-.hero-grid,.grid2{
-  display:grid;
-  grid-template-columns:1.1fr 1fr;
-  gap:24px
-}
-
-.grid3{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px
-}
-
-.grid4{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px
-}
-
-.btn{
-  border:0;
-  min-height:44px;
-  padding:11px 16px;
-  border-radius:10px;
-  font-weight:700
-}
-
-.btn-primary{background:var(--blue);color:white}
-.btn-success{background:var(--green);color:white}
-.btn-secondary{background:var(--light);color:#075a8d}
-.btn-warning{background:var(--orangeLight);color:#855300;border:1px solid #efc274}
-.btn-danger{background:var(--redLight);color:#992828}
-.btn-purple{background:var(--purpleLight);color:#583ca1}
-
-.btn:disabled{
-  opacity:.55;
-  cursor:not-allowed
-}
-
-.actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:9px;
-  margin-top:14px
-}
-
-.formula{
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:1.23rem;
-  text-align:center;
-  background:#f1f5f8;
-  padding:13px;
-  border-radius:10px;
-  margin:11px 0
-}
-
-.notice{
-  padding:14px 16px;
-  border-radius:10px;
-  margin:12px 0
-}
-
-.notice.info{background:var(--light);border-left:5px solid var(--blue)}
-.notice.ok{background:var(--greenLight);border-left:5px solid var(--green)}
-.notice.warn{background:var(--orangeLight);border-left:5px solid var(--orange)}
-.notice.error{background:var(--redLight);border-left:5px solid var(--red)}
-
-.chips{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px
-}
-
-.chip,.badge{
-  display:inline-block;
-  padding:5px 10px;
-  border-radius:999px;
-  font-size:.82rem;
-  font-weight:700
-}
-
-.chip{background:var(--light)}
-.badge-blue{background:#dff2ff;color:#075b92}
-.badge-green{background:#e5f6ed;color:#126b43}
-.badge-orange{background:#fff0d5;color:#875400}
-.badge-purple{background:#eee8ff;color:#593ca3}
-.badge-red{background:#fdeaea;color:#9f2b2b}
-
-input[type=text],
-input[type=number],
-select,
-textarea{
-  min-height:44px;
-  border:1px solid #9eb9ca;
-  border-radius:8px;
-  background:#fff;
-  padding:10px;
-  color:var(--text)
-}
-
-textarea{
-  width:100%;
-  min-height:115px
-}
-
-.answer-row{
-  display:flex;
-  align-items:end;
-  flex-wrap:wrap;
-  gap:10px;
-  margin:14px 0
-}
-
-.answer-row label{
-  display:block;
-  font-weight:700;
-  margin-bottom:5px
-}
-
+textarea{width:100%;min-height:115px}
+.answer-row{display:flex;align-items:end;flex-wrap:wrap;gap:10px;margin:14px 0}.answer-row label{display:block;font-weight:700;margin-bottom:5px}
+.hero-visual{background:linear-gradient(145deg,#eaf5fc,#fff);padding:18px;border-radius:15px}
+.objective{background:var(--greenL);border-left:5px solid var(--green);padding:16px;border-radius:10px}
 .hidden{display:none!important}
-
-/* accueil */
-.hero-visual{
-  border-radius:16px;
-  padding:20px;
-  background:linear-gradient(145deg,#eaf5fc,#fff)
-}
-
-.objective{
-  padding:16px;
-  background:var(--greenLight);
-  border-left:5px solid var(--green);
-  border-radius:10px
-}
-
-/* vidéo */
-.video-shell{
-  background:#061524;
-  color:#fff;
-  border-radius:18px;
-  overflow:hidden
-}
-
-.video-screen{
-  min-height:410px;
-  padding:30px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:
-    radial-gradient(circle at 85% 15%,#176d9f 0,#0b395b 30%,#061524 70%)
-}
-
-.video-slide{
-  max-width:900px;
-  width:100%;
-  text-align:center
-}
-
-.video-section{
-  color:#a8dbfb;
-  font-size:.82rem;
-  font-weight:800;
-  text-transform:uppercase;
-  letter-spacing:.08em
-}
-
-.video-title{
-  font-size:1.9rem;
-  font-weight:800;
-  margin:8px 0 12px
-}
-
-.video-formula{
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:1.55rem;
-  background:#ffffff15;
-  border:1px solid #ffffff35;
-  border-radius:12px;
-  padding:15px;
-  margin:12px 0
-}
-
-.video-text{
-  text-align:left;
-  background:#03111eaa;
-  padding:15px 18px;
-  border-radius:10px
-}
-
-.video-controls{
-  background:#050f1a;
-  padding:15px
-}
-
-.video-progress{
-  height:8px;
-  background:#ffffff20;
-  border-radius:999px;
-  overflow:hidden;
-  margin-bottom:12px
-}
-
-.video-progress div{
-  height:100%;
-  background:#55bbff;
-  transition:.3s
-}
-
-.video-buttons{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  align-items:center
-}
-
-.video-buttons button{
-  color:#fff;
-  background:#102a40;
-  border:1px solid #33566f;
-  min-height:42px;
-  border-radius:8px;
-  padding:9px 12px
-}
-
-.video-settings{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:12px
-}
-
-.video-settings label{
-  display:block;
-  color:#d7e9f5;
-  font-size:.86rem;
-  margin-bottom:4px
-}
-
-.video-settings select{
-  width:100%;
-  background:#102a40;
-  color:#fff;
-  border-color:#43657c
-}
-
-.video-chapters{
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:7px;
-  margin-top:12px
-}
-
-.video-chapters button{
-  background:#102a40;
-  color:#fff;
-  border:1px solid #33566f;
-  border-radius:8px;
-  padding:8px
-}
-
-/* théorie */
-.theory-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px
-}
-
-.theory-card{
-  border:1px solid var(--border);
-  border-radius:13px;
-  background:#fff;
-  padding:17px
-}
-
-.theory-card summary{
-  color:var(--navy);
-  cursor:pointer;
-  font-weight:800
-}
-
-.method-table{
-  width:100%;
-  border-collapse:collapse
-}
-
-.method-table th,
-.method-table td{
-  border-bottom:1px solid var(--border);
-  padding:10px;
-  text-align:left
-}
-
-.method-table th{background:#f1f5f8}
-
-/* progression exercices */
-.series-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px
-}
-
-.series-button{
-  text-align:left;
-  border:2px solid var(--border);
-  background:#fff;
-  border-radius:12px;
-  padding:14px;
-  color:var(--text)
-}
-
-.series-button.active{
-  border-color:var(--blue);
-  background:var(--light)
-}
-
-.series-button strong{
-  display:block;
-  color:var(--navy)
-}
-
-.difficulty-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin:12px 0
-}
-
-.exercise-box{
-  background:#fbfdff;
-  border:2px solid #dbeaf5;
-  border-radius:15px;
-  padding:21px
-}
-
-.exercise-meta{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px
-}
-
-.level-progress{
-  height:10px;
-  background:#e4edf3;
-  border-radius:999px;
-  overflow:hidden;
-  margin:8px 0
-}
-
-.level-progress div{
-  height:100%;
-  background:linear-gradient(90deg,var(--blue),var(--green))
-}
-
-/* étapes */
-.steps{
-  counter-reset:step;
-  padding:0;
-  margin:0
-}
-
-.steps li{
-  list-style:none;
-  counter-increment:step;
-  padding:12px 12px 12px 47px;
-  margin:9px 0;
-  background:#f7fafc;
-  border-radius:10px;
-  position:relative
-}
-
-.steps li:before{
-  content:counter(step);
-  position:absolute;
-  left:12px;
-  top:11px;
-  width:25px;
-  height:25px;
-  border-radius:50%;
-  background:var(--blue);
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:800
-}
-
-/* quiz */
-.quiz-question{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:13px;
-  padding:17px;
-  margin-bottom:12px
-}
-
-.quiz-option{
-  display:block;
-  width:100%;
-  text-align:left;
-  padding:10px;
-  margin:7px 0;
-  border:2px solid transparent;
-  border-radius:9px;
-  background:#f7fafc
-}
-
-.quiz-option:hover{border-color:var(--blue2)}
-.quiz-option.selected{
-  border-color:var(--blue);
-  background:var(--light)
-}
-
-/* stats */
-.stat strong{
-  display:block;
-  color:var(--navy);
-  font-size:1.7rem
-}
-
-.bar{
-  height:13px;
-  background:#e4edf3;
-  border-radius:999px;
-  overflow:hidden
-}
-
-.bar>div{
-  height:100%;
-  background:var(--blue)
-}
-
-table{
-  width:100%;
-  border-collapse:collapse
-}
-
-th,td{
-  padding:9px;
-  border-bottom:1px solid var(--border);
-  text-align:left
-}
-
-th{background:#f2f6f9}
-
+.theory-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.theory-card{background:#fff;border:1px solid var(--border);border-radius:13px;padding:17px}
+.theory-card summary{font-weight:800;color:var(--navy);cursor:pointer}
+.video-shell{background:#061523;color:#fff;border-radius:18px;overflow:hidden}
+.video-screen{min-height:410px;display:flex;align-items:center;justify-content:center;padding:30px;background:radial-gradient(circle at 85% 10%,#176c9f,#0b395b 32%,#061523 72%)}
+.video-slide{width:min(900px,100%);text-align:center}.video-section{text-transform:uppercase;letter-spacing:.08em;color:#a7dcfc;font-size:.82rem;font-weight:800}
+.video-title{font-size:1.9rem;font-weight:800;margin:8px 0 12px}.video-formula{font-family:Georgia,"Times New Roman",serif;font-size:1.55rem;background:#ffffff15;border:1px solid #ffffff30;border-radius:12px;padding:15px}
+.video-text{text-align:left;background:#03111eaa;padding:15px 18px;border-radius:10px;margin-top:14px}.video-controls{background:#050f1a;padding:15px}
+.video-progress{height:8px;background:#ffffff20;border-radius:999px;overflow:hidden;margin-bottom:12px}.video-progress div{height:100%;background:#55bbff;transition:.3s}
+.video-buttons{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.video-buttons button{background:#102a40;color:#fff;border:1px solid #33566f;border-radius:8px;padding:9px 12px}
+.video-settings{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.video-settings label{display:block;color:#d8e9f5;font-size:.86rem;margin-bottom:4px}
+.video-settings select{width:100%;background:#102a40;color:#fff;border-color:#43647a}
+.video-chapters{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-top:12px}.video-chapters button{background:#102a40;color:#fff;border:1px solid #33566f;border-radius:8px;padding:8px}
+.series-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.series-button{background:#fff;border:2px solid var(--border);border-radius:12px;padding:14px;text-align:left;color:var(--text)}
+.series-button.active{border-color:var(--blue);background:var(--light)}.series-button strong{display:block;color:var(--navy)}
+.exercise-box{background:#fbfdff;border:2px solid #dbeaf5;border-radius:15px;padding:21px}.exercise-meta{display:flex;flex-wrap:wrap;gap:7px}
+.level-progress{height:10px;background:#e3edf4;border-radius:999px;overflow:hidden;margin:8px 0}.level-progress div{height:100%;background:linear-gradient(90deg,var(--blue),var(--green))}
+.quiz-question{background:#fff;border:1px solid var(--border);border-radius:13px;padding:17px;margin-bottom:12px}
+.quiz-option{display:block;width:100%;text-align:left;background:#f8fbfd;border:2px solid transparent;padding:10px;margin:7px 0;border-radius:9px}
+.quiz-option:hover{border-color:var(--blue2)}.quiz-option.selected{border-color:var(--blue);background:var(--light)}
+.stat strong{display:block;color:var(--navy);font-size:1.7rem}.bar{height:13px;background:#e4edf3;border-radius:999px;overflow:hidden}.bar div{height:100%;background:var(--blue)}
+table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid var(--border);text-align:left}th{background:#f2f6f9}
+.teacher-lock{max-width:500px;margin:30px auto}.teacher-tools{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.teacher-tool{background:#fff;border:1px solid var(--border);border-radius:13px;padding:16px}
+.projection body{}.projection .nav button:not(.active){display:none}.projection main{max-width:1500px}.projection .panel,.projection .card{font-size:1.15rem}.projection .answer-hidden{visibility:hidden}
+.print-sheet{background:#fff;padding:20px}.print-question{margin:16px 0 24px}.teacher-settings label{display:block;margin:8px 0;font-weight:700}
+.module-toggle{display:flex;gap:8px;align-items:center;margin:7px 0}
 @media(max-width:900px){
-  .hero-grid,.grid2,.grid3,.grid4,
-  .series-grid,.theory-grid,
-  .video-settings,.video-chapters{
-    grid-template-columns:1fr
-  }
-
-  .header-inner{
-    flex-direction:column;
-    align-items:flex-start
-  }
-
-  nav{top:111px}
-  .global-progress{width:100%;min-width:0}
+  .hero-grid,.grid2,.grid3,.grid4,.series-grid,.theory-grid,.video-settings,.video-chapters,.teacher-tools{grid-template-columns:1fr}
+  .header-inner{flex-direction:column;align-items:flex-start}.progressbox{width:100%;min-width:0}nav{top:111px}
 }
-
-@media(max-width:520px){
-  main{padding-left:10px;padding-right:10px}
-  .hero,.panel{padding:17px}
-  .video-screen{min-height:330px;padding:18px}
-  .video-title{font-size:1.45rem}
-  .video-formula{font-size:1.2rem}
+@media(max-width:520px){main{padding-left:10px;padding-right:10px}.hero,.panel{padding:17px}.video-screen{min-height:330px;padding:18px}.video-title{font-size:1.45rem}}
+@media print{
+  header,nav,.no-print{display:none!important}
+  body{background:#fff}.page{display:none!important}.print-sheet{display:block!important}
+  .panel,.card{box-shadow:none;border:0}.print-question{page-break-inside:avoid}
 }
 </style>
 </head>
@@ -638,861 +110,432 @@ th{background:#f2f6f9}
 
 <header>
 <div class="header-inner">
-
 <div>
 <h1>🧮 Équations du second degré interactives – 4e secondaire</h1>
-<div class="small">
-Résolution • Factorisation • Racines • Paramètres • Systèmes • Fractions • Radicaux
+<div class="small">Résolution • Factorisation • Racines • Paramètres • Systèmes • Fractions • Radicaux</div>
 </div>
+<div class="progressbox">
+<div class="small">Progression : <span id="globalProgressText">0 %</span></div>
+<div class="progress"><div id="globalProgressBar"></div></div>
 </div>
-
-<div class="global-progress">
-<div class="small">
-Progression :
-<span id="globalProgressText">0 %</span>
-</div>
-<div class="progress">
-<div id="globalProgressBar"></div>
-</div>
-</div>
-
 </div>
 </header>
 
 <nav aria-label="Navigation principale">
-<div class="nav-inner">
+<div class="nav">
 <button class="active" data-page="home">Accueil</button>
 <button data-page="course">Cours vidéo</button>
 <button data-page="theory">Synthèse</button>
-<button data-page="practice">Exercices</button>
+<button data-page="practice">S'entraîner</button>
 <button data-page="reason">Raisonner</button>
 <button data-page="challenge">Défis</button>
 <button data-page="quiz">Quiz final</button>
 <button data-page="progress">Mes progrès</button>
+<button data-page="teacher">👨‍🏫 Espace enseignant</button>
 </div>
 </nav>
 
 <main>
 
-<!-- ACCUEIL -->
-
 <section id="home" class="page active">
-
 <div class="hero">
-
 <div class="hero-grid">
-
 <div>
-
 <div class="chips">
+<span class="chip">Mathématiques</span>
 <span class="chip">4e secondaire</span>
 <span class="chip">Équations du second degré</span>
-<span class="chip">Série C.2.3 à C.2.9</span>
 </div>
-
-<h2>Apprendre à résoudre des équations de plus en plus complexes</h2>
-
-<p>
-L'application reprend les grandes familles d'exercices de la série :
-équations du second degré, factorisation, étude des racines, paramètres,
-systèmes, équations rationnelles et équations contenant des racines carrées.
-</p>
-
+<h2>Résoudre des équations de difficulté progressive</h2>
+<p>Cette application reprend les familles présentes dans le dossier : résolution d'équations du second degré, factorisation, étude des racines, paramètres, systèmes, fractions rationnelles, substitutions et équations irrationnelles.</p>
 <div class="objective">
-
 <strong>À la fin, je serai capable de…</strong>
-
 <ul>
 <li>mettre une équation sous forme standard ;</li>
-<li>factoriser lorsque c'est possible ;</li>
-<li>utiliser la règle du produit nul ;</li>
-<li>calculer le discriminant ;</li>
-<li>déterminer les racines réelles ;</li>
-<li>étudier leur nombre et leur signe ;</li>
+<li>choisir entre factorisation et discriminant ;</li>
+<li>calculer et interpréter Δ ;</li>
+<li>utiliser la somme et le produit des racines ;</li>
 <li>raisonner sur un paramètre ;</li>
-<li>résoudre certains systèmes liés au second degré ;</li>
-<li>traiter des équations rationnelles ;</li>
-<li>résoudre des équations irrationnelles avec vérification.</li>
+<li>résoudre certains systèmes ;</li>
+<li>respecter les valeurs interdites ;</li>
+<li>résoudre une équation avec racine carrée et vérifier les solutions.</li>
 </ul>
-
 </div>
-
 <div class="actions">
-
-<button class="btn btn-primary"
-onclick="go('course')">
-🎬 Commencer le cours
-</button>
-
-<button class="btn btn-success"
-onclick="go('practice')">
-💪 Commencer les exercices
-</button>
-
+<button class="btn btn-primary" onclick="go('course')">🎬 Commencer le cours</button>
+<button class="btn btn-success" onclick="go('practice')">💪 Commencer les exercices</button>
 </div>
-
 </div>
 
 <div class="hero-visual">
-
-<svg viewBox="0 0 540 350"
-role="img"
-aria-label="Schéma des méthodes de résolution">
-
-<rect width="540" height="350" rx="18" fill="#fff"/>
-
-<rect x="170" y="25" width="200" height="55" rx="12" fill="#eaf5fc"/>
-<text x="270" y="58" text-anchor="middle" fill="#102f46" font-size="18" font-weight="bold">
-ax²+bx+c=0
-</text>
-
-<line x1="270" y1="80" x2="270" y2="115" stroke="#287fc1" stroke-width="3"/>
-
-<rect x="35" y="120" width="145" height="70" rx="12" fill="#e7f7ee"/>
-<text x="107" y="148" text-anchor="middle" fill="#173246" font-size="15" font-weight="bold">
-Factorisable ?
-</text>
-<text x="107" y="170" text-anchor="middle" fill="#173246" font-size="13">
-Produit nul
-</text>
-
-<rect x="198" y="120" width="145" height="70" rx="12" fill="#fff2dc"/>
-<text x="270" y="148" text-anchor="middle" fill="#173246" font-size="15" font-weight="bold">
-Discriminant
-</text>
-<text x="270" y="170" text-anchor="middle" fill="#173246" font-size="13">
-Δ=b²−4ac
-</text>
-
-<rect x="360" y="120" width="145" height="70" rx="12" fill="#eee8ff"/>
-<text x="432" y="148" text-anchor="middle" fill="#173246" font-size="15" font-weight="bold">
-Forme spéciale ?
-</text>
-<text x="432" y="170" text-anchor="middle" fill="#173246" font-size="13">
-Fraction / racine
-</text>
-
-<line x1="270" y1="115" x2="107" y2="120" stroke="#287fc1" stroke-width="2"/>
-<line x1="270" y1="115" x2="270" y2="120" stroke="#287fc1" stroke-width="2"/>
-<line x1="270" y1="115" x2="432" y2="120" stroke="#287fc1" stroke-width="2"/>
-
-<rect x="65" y="235" width="410" height="70" rx="12" fill="#f3f7fa"/>
-<text x="270" y="263" text-anchor="middle" fill="#102f46" font-size="16" font-weight="bold">
-Toujours terminer par une vérification
-</text>
-<text x="270" y="286" text-anchor="middle" fill="#173246" font-size="13">
-et préciser l'ensemble des solutions
-</text>
-
+<svg viewBox="0 0 520 350" role="img" aria-label="Arbre de décision pour résoudre une équation">
+<rect width="520" height="350" rx="18" fill="#fff"/>
+<rect x="160" y="25" width="200" height="55" rx="12" fill="#eaf5fc"/>
+<text x="260" y="58" text-anchor="middle" fill="#102f46" font-size="18" font-weight="bold">ax²+bx+c=0</text>
+<line x1="260" y1="80" x2="260" y2="115" stroke="#287fc1" stroke-width="3"/>
+<rect x="25" y="120" width="145" height="70" rx="12" fill="#e8f7ee"/>
+<text x="98" y="148" text-anchor="middle" fill="#173246" font-size="15" font-weight="bold">Factorisable ?</text>
+<text x="98" y="170" text-anchor="middle" fill="#173246" font-size="13">Produit nul</text>
+<rect x="188" y="120" width="145" height="70" rx="12" fill="#fff2db"/>
+<text x="260" y="148" text-anchor="middle" fill="#173246" font-size="15" font-weight="bold">Discriminant</text>
+<text x="260" y="170" text-anchor="middle" fill="#173246" font-size="13">Δ=b²−4ac</text>
+<rect x="350" y="120" width="145" height="70" rx="12" fill="#eee8ff"/>
+<text x="423" y="148" text-anchor="middle" fill="#173246" font-size="15" font-weight="bold">Forme spéciale ?</text>
+<text x="423" y="170" text-anchor="middle" fill="#173246" font-size="13">Fraction / racine</text>
+<line x1="260" y1="115" x2="98" y2="120" stroke="#287fc1" stroke-width="2"/>
+<line x1="260" y1="115" x2="260" y2="120" stroke="#287fc1" stroke-width="2"/>
+<line x1="260" y1="115" x2="423" y2="120" stroke="#287fc1" stroke-width="2"/>
+<rect x="60" y="235" width="400" height="70" rx="12" fill="#f3f7fa"/>
+<text x="260" y="263" text-anchor="middle" fill="#102f46" font-size="16" font-weight="bold">Observer → Transformer → Résoudre</text>
+<text x="260" y="287" text-anchor="middle" fill="#173246" font-size="14">→ Vérifier → Donner S</text>
 </svg>
-
 </div>
-
 </div>
-
 </div>
-
 </section>
 
-<!-- COURS VIDEO -->
-
 <section id="course" class="page">
-
 <h2>1. Cours vidéo interactif</h2>
-
 <div class="panel">
-
-<p>
-Utilise les boutons pour parcourir le cours. Tu peux activer une voix française
-si ton navigateur prend en charge la synthèse vocale.
-</p>
-
+<p>Le cours est présenté sous forme de diapositives animées. La synthèse vocale utilise les voix françaises disponibles dans le navigateur.</p>
 <div class="video-shell">
-
-<div class="video-screen">
-<div id="videoSlide" class="video-slide"></div>
-</div>
-
+<div class="video-screen"><div id="videoSlide" class="video-slide"></div></div>
 <div class="video-controls">
-
-<div class="video-progress">
-<div id="videoProgress"></div>
-</div>
-
+<div class="video-progress"><div id="videoProgress"></div></div>
 <div class="video-buttons">
-
 <button onclick="videoPrevious()">⏮ Précédent</button>
-
-<button id="videoPlayButton"
-onclick="toggleVideo()">
-▶ Lecture
-</button>
-
+<button id="videoPlayButton" onclick="toggleVideo()">▶ Lecture</button>
 <button onclick="videoNext()">Suivant ⏭</button>
-
 <button onclick="repeatNarration()">🔁 Réécouter</button>
-
-<button id="voiceButton"
-onclick="toggleNarration()">
-🔇 Activer la voix
-</button>
-
+<button id="voiceButton" onclick="toggleNarration()">🔇 Activer la voix</button>
 <span id="videoCounter"></span>
-
 </div>
-
 <div class="video-settings">
-
 <div>
-<label for="voiceSelect">Voix</label>
-<select id="voiceSelect">
-<option value="">Voix française automatique</option>
-</select>
+<label for="voiceSelect">Voix française</label>
+<select id="voiceSelect"><option value="">Automatique</option></select>
 </div>
-
 <div>
 <label for="speechRate">Vitesse</label>
 <select id="speechRate">
-<option value="0.75">Lente</option>
-<option value="0.9" selected>Normale</option>
+<option value=".75">Lente</option>
+<option value=".9" selected>Normale</option>
 <option value="1.05">Rapide</option>
 </select>
 </div>
-
 </div>
-
-<div id="voiceStatus"
-class="small"
-style="margin-top:8px">
-</div>
-
+<div id="voiceStatus" class="small" style="margin-top:8px"></div>
 <div class="video-chapters">
-
 <button onclick="jumpVideo(0)">Bases</button>
-<button onclick="jumpVideo(4)">Factoriser</button>
+<button onclick="jumpVideo(4)">Factorisation</button>
 <button onclick="jumpVideo(8)">Δ</button>
 <button onclick="jumpVideo(13)">Racines</button>
 <button onclick="jumpVideo(17)">Paramètres</button>
-<button onclick="jumpVideo(22)">Fractions & racines</button>
-
+<button onclick="jumpVideo(22)">Fractions / radicaux</button>
 </div>
-
 </div>
-
 </div>
-
 </div>
-
 </section>
 
-<!-- SYNTHESE -->
-
 <section id="theory" class="page">
-
 <h2>2. Synthèse de théorie</h2>
-
-<div class="notice info">
-La méthode dépend de la forme de l'équation. Il est donc essentiel de commencer
-par observer et simplifier avant d'appliquer automatiquement une formule.
-</div>
-
+<div class="notice info">Commence toujours par observer la forme de l'équation. Le discriminant est une méthode générale, mais ce n'est pas toujours la méthode la plus courte.</div>
 <div class="theory-grid">
 
 <details class="theory-card" open>
 <summary>Forme standard</summary>
-
-<div class="formula">
-ax²+bx+c=0
-</div>
-
-<p>
-Avant d'utiliser le discriminant, regroupe tous les termes dans un seul membre.
-</p>
-
-<p>
-Il faut avoir <strong>a≠0</strong> pour obtenir une véritable équation du second degré.
-</p>
+<div class="formula">ax²+bx+c=0, avec a≠0</div>
+<p>Regroupe tous les termes dans un seul membre avant d'identifier a, b et c.</p>
 </details>
 
 <details class="theory-card">
 <summary>Produit nul</summary>
-
-<div class="formula">
-A·B=0 ⇔ A=0 ou B=0
-</div>
-
-<p>
-Exemple :
-</p>
-
-<div class="formula">
-(x−1)(x+5)=0
-</div>
-
-<p>
-Donc x=1 ou x=−5.
-</p>
+<div class="formula">A·B=0 ⇔ A=0 ou B=0</div>
+<p>Exemple : (x−1)(x+5)=0 donne x=1 ou x=−5.</p>
 </details>
 
 <details class="theory-card">
 <summary>Factorisation</summary>
-
-<p>Quelques formes utiles :</p>
-
-<div class="formula">
-x²−a²=(x−a)(x+a)
-</div>
-
-<div class="formula">
-x²+2ax+a²=(x+a)²
-</div>
-
-<p>
-On peut également chercher deux nombres dont la somme et le produit conviennent.
-</p>
+<div class="formula">x²−a²=(x−a)(x+a)</div>
+<div class="formula">x²+2ax+a²=(x+a)²</div>
 </details>
 
 <details class="theory-card">
 <summary>Discriminant</summary>
-
-<div class="formula">
-Δ=b²−4ac
-</div>
-
-<ul>
-<li>Δ&gt;0 : deux racines réelles distinctes ;</li>
-<li>Δ=0 : une racine réelle double ;</li>
-<li>Δ&lt;0 : aucune racine réelle.</li>
-</ul>
+<div class="formula">Δ=b²−4ac</div>
+<ul><li>Δ&gt;0 : deux racines ;</li><li>Δ=0 : une racine double ;</li><li>Δ&lt;0 : aucune racine réelle.</li></ul>
 </details>
 
 <details class="theory-card">
-<summary>Formules des racines</summary>
-
-<p>Si Δ&gt;0 :</p>
-
-<div class="formula">
-x₁=(-b−√Δ)/(2a)
-</div>
-
-<div class="formula">
-x₂=(-b+√Δ)/(2a)
-</div>
-
-<p>Si Δ=0 :</p>
-
-<div class="formula">
-x₀=−b/(2a)
-</div>
+<summary>Racines</summary>
+<div class="formula">x₁=(-b−√Δ)/(2a)</div>
+<div class="formula">x₂=(-b+√Δ)/(2a)</div>
 </details>
 
 <details class="theory-card">
 <summary>Somme et produit</summary>
-
-<p>Si les racines sont x₁ et x₂ :</p>
-
-<div class="formula">
-x₁+x₂=−b/a
-</div>
-
-<div class="formula">
-x₁x₂=c/a
-</div>
-
-<p>
-Ces relations sont utiles pour étudier le signe des racines ou déterminer un paramètre.
-</p>
+<div class="formula">x₁+x₂=−b/a</div>
+<div class="formula">x₁x₂=c/a</div>
 </details>
 
 <details class="theory-card">
 <summary>Signe des racines</summary>
-
-<p>
-Le produit permet souvent de connaître si les racines ont même signe ou des signes opposés.
-</p>
-
 <ul>
-<li>x₁x₂&lt;0 : racines de signes opposés ;</li>
-<li>x₁x₂&gt;0 : racines de même signe, si elles existent ;</li>
-<li>x₁x₂=0 : au moins une racine nulle.</li>
+<li>Produit négatif : signes opposés.</li>
+<li>Produit positif : même signe si les racines existent.</li>
+<li>Produit nul : au moins une racine nulle.</li>
 </ul>
-
-<p>
-La somme permet ensuite de préciser le signe lorsqu'elles sont de même signe.
-</p>
 </details>
 
 <details class="theory-card">
-<summary>Équations avec paramètre</summary>
+<summary>Deux racines positives</summary>
+<div class="formula">Δ&gt;0, x₁x₂&gt;0 et x₁+x₂&gt;0</div>
+</details>
 
-<p>
-Quand un coefficient dépend de m ou de c :
-</p>
+<details class="theory-card">
+<summary>Racines inverses</summary>
+<div class="formula">x₁x₂=1</div>
+</details>
 
-<ol>
-<li>identifier a, b et c ;</li>
-<li>calculer Δ en fonction du paramètre ;</li>
-<li>étudier son signe ;</li>
-<li>traiter aussi les valeurs qui peuvent faire disparaître le terme x².</li>
-</ol>
+<details class="theory-card">
+<summary>Paramètre</summary>
+<p>Calculer Δ en fonction du paramètre, étudier son signe et traiter séparément une valeur qui pourrait annuler a.</p>
 </details>
 
 <details class="theory-card">
 <summary>Équations rationnelles</summary>
-
-<p>
-Avant tout calcul, exclure les valeurs qui annulent un dénominateur.
-</p>
-
-<div class="formula">
-Dénominateur ≠ 0
-</div>
-
-<p>
-Ensuite, multiplier par un dénominateur commun puis résoudre l'équation obtenue.
-</p>
+<p>1. Valeurs interdites.<br>2. Réduction au même dénominateur.<br>3. Résolution.<br>4. Vérification.</p>
 </details>
 
 <details class="theory-card">
 <summary>Équations irrationnelles</summary>
-
-<p>Pour une équation contenant une racine carrée :</p>
-
-<ol>
-<li>déterminer les conditions d'existence ;</li>
-<li>isoler la racine ;</li>
-<li>élever au carré ;</li>
-<li>résoudre l'équation obtenue ;</li>
-<li>vérifier chaque solution dans l'équation initiale.</li>
-</ol>
+<p>1. Conditions d'existence.<br>2. Isoler la racine.<br>3. Élever au carré.<br>4. Résoudre.<br>5. Vérifier dans l'équation initiale.</p>
 </details>
 
 <details class="theory-card">
 <summary>Substitution</summary>
-
-<p>
-Lorsqu'une même expression apparaît plusieurs fois, on peut poser une nouvelle inconnue.
-</p>
-
-<div class="formula">
-t = expression répétée
-</div>
-
-<p>
-Il faut ensuite revenir à x à la fin.
-</p>
+<div class="formula">t = expression répétée</div>
+<p>Exemple : pour x⁴−5x²+4=0, poser t=x².</p>
 </details>
 
 <details class="theory-card">
-<summary>Systèmes</summary>
-
-<p>
-Certaines questions associent deux inconnues x et y.
-On peut utiliser substitution, addition ou les relations somme-produit.
-</p>
-
-<div class="formula">
-x+y=S et xy=P
-</div>
-
-<p>
-Alors x et y peuvent être vus comme les racines de :
-</p>
-
-<div class="formula">
-t²−St+P=0
-</div>
+<summary>Systèmes somme-produit</summary>
+<div class="formula">x+y=S et xy=P</div>
+<p>x et y peuvent être considérés comme les racines de t²−St+P=0.</p>
 </details>
 
 </div>
-
-<div class="panel" style="margin-top:18px">
-
-<h3>Tableau de décision</h3>
-
-<table class="method-table">
-
-<tr>
-<th>Situation</th>
-<th>Méthode conseillée</th>
-</tr>
-
-<tr>
-<td>Produit déjà factorisé</td>
-<td>Produit nul</td>
-</tr>
-
-<tr>
-<td>Différence de carrés</td>
-<td>Identité remarquable</td>
-</tr>
-
-<tr>
-<td>Trinôme factorisable simplement</td>
-<td>Factorisation</td>
-</tr>
-
-<tr>
-<td>Trinôme général</td>
-<td>Discriminant</td>
-</tr>
-
-<tr>
-<td>Présence d'un paramètre</td>
-<td>Discussion sur Δ et coefficients</td>
-</tr>
-
-<tr>
-<td>Fraction avec x au dénominateur</td>
-<td>Conditions d'existence puis réduction</td>
-</tr>
-
-<tr>
-<td>Racine carrée</td>
-<td>Conditions, carré, résolution, vérification</td>
-</tr>
-
-</table>
-
-</div>
-
 </section>
 
-<!-- EXERCICES -->
-
 <section id="practice" class="page">
-
 <h2>3. Exercices progressifs</h2>
-
 <div class="panel">
-
-<p>
-Les familles ci-dessous reprennent la progression de la série d'exercices.
-Les nombres sont générés pour permettre plusieurs entraînements sur les mêmes méthodes.
-</p>
-
 <div class="series-grid">
-
-<button class="series-button active"
-data-series="1"
-onclick="selectSeries(1,this)">
-<strong>Série 1</strong>
-Équations classiques
-<span class="small">C.2.3</span>
-</button>
-
-<button class="series-button"
-data-series="2"
-onclick="selectSeries(2,this)">
-<strong>Série 2</strong>
-Factorisation
-<span class="small">C.2.6</span>
-</button>
-
-<button class="series-button"
-data-series="3"
-onclick="selectSeries(3,this)">
-<strong>Série 3</strong>
-Nombre et signe des racines
-<span class="small">C.2.8</span>
-</button>
-
-<button class="series-button"
-data-series="4"
-onclick="selectSeries(4,this)">
-<strong>Séries 4–6</strong>
-Conditions sur un paramètre
-<span class="small">C.2.9</span>
-</button>
-
-<button class="series-button"
-data-series="5"
-onclick="selectSeries(5,this)">
-<strong>Série 7</strong>
-Systèmes
-<span class="small">C.2.8</span>
-</button>
-
-<button class="series-button"
-data-series="6"
-onclick="selectSeries(6,this)">
-<strong>Série 8</strong>
-Discussion selon m
-<span class="small">C.2.9</span>
-</button>
-
+<button class="series-button active" onclick="selectSeries(1,this)"><strong>Série 1</strong>Résoudre des équations</button>
+<button class="series-button" onclick="selectSeries(2,this)"><strong>Série 2</strong>Factoriser</button>
+<button class="series-button" onclick="selectSeries(3,this)"><strong>Série 3</strong>Nombre et signe des racines</button>
+<button class="series-button" onclick="selectSeries(4,this)"><strong>Séries 4–6</strong>Conditions sur un paramètre</button>
+<button class="series-button" onclick="selectSeries(5,this)"><strong>Série 7</strong>Systèmes</button>
+<button class="series-button" onclick="selectSeries(6,this)"><strong>Série 8</strong>Discussion selon m</button>
 </div>
-
 <div class="answer-row">
-
 <div>
 <label for="difficulty">Difficulté</label>
-
-<select id="difficulty"
-onchange="generateExercise()">
+<select id="difficulty" onchange="generateExercise()">
 <option value="1">Palier 1 — accessible</option>
 <option value="2" selected>Palier 2 — intermédiaire</option>
 <option value="3">Palier 3 — avancé</option>
 </select>
 </div>
-
-<button class="btn btn-primary"
-onclick="generateExercise()">
-Nouvel exercice
-</button>
-
+<button class="btn btn-primary" onclick="generateExercise()">Nouvel exercice</button>
+<button class="btn btn-purple" onclick="randomSeries()">Défi aléatoire</button>
 </div>
-
 <div id="seriesProgress"></div>
-
 </div>
-
-<div id="exerciseArea"
-class="exercise-box">
-</div>
-
+<div id="exerciseArea" class="exercise-box"></div>
 </section>
-
-<!-- RAISONNER -->
 
 <section id="reason" class="page">
-
-<h2>4. Raisonner sur les racines et les paramètres</h2>
+<h2>4. Raisonner</h2>
 
 <div class="panel">
-
-<div class="chips">
-<span class="badge badge-orange">C.2.8</span>
-<span class="badge badge-purple">Raisonnement</span>
-</div>
-
+<div class="chips"><span class="badge badge-purple">Raisonnement</span><span class="badge badge-orange">Racines</span></div>
 <h3>Nombre et signe des racines</h3>
-
-<p>
-On considère l'équation :
-</p>
-
-<div class="formula">
-x²−7x+10=0
-</div>
-
-<p>
-Sans calculer explicitement les racines, détermine :
-</p>
-
-<ol class="steps">
-<li>le nombre de racines réelles ;</li>
-<li>le signe de leur produit ;</li>
-<li>le signe de leur somme ;</li>
-<li>le signe de chacune des racines.</li>
-</ol>
-
-<textarea id="rootReasoning"
-placeholder="Écris ton raisonnement…"></textarea>
-
+<div class="formula">x²−7x+10=0</div>
+<p>Sans calculer les racines, détermine combien il y en a et leur signe.</p>
+<textarea id="reasonRoots" placeholder="Écris ton raisonnement…"></textarea>
 <div class="actions">
-
-<button class="btn btn-warning"
-onclick="showRootReasonHint()">
-Indice
-</button>
-
-<button class="btn btn-secondary"
-onclick="showRootReasonCorrection()">
-Correction détaillée
-</button>
-
+<button class="btn btn-warning" onclick="reasonRootsHint()">Indice</button>
+<button class="btn btn-secondary" onclick="reasonRootsCorrection()">Correction</button>
 </div>
-
-<div id="rootReasonFeedback"></div>
-
+<div id="reasonRootsFeedback"></div>
 </div>
 
 <div class="panel">
-
-<div class="chips">
-<span class="badge badge-orange">C.2.9</span>
-<span class="badge badge-purple">Paramètre</span>
-</div>
-
-<h3>Discussion d'une équation</h3>
-
-<p>
-On considère :
-</p>
-
-<div class="formula">
-x²+mx+m=0
-</div>
-
-<p>
-Discute le nombre de solutions réelles selon les valeurs du paramètre m.
-</p>
-
-<textarea id="parameterReasoning"
-placeholder="Calcule Δ en fonction de m puis étudie son signe…"></textarea>
-
+<div class="chips"><span class="badge badge-purple">Paramètre</span><span class="badge badge-orange">C.2.9</span></div>
+<h3>Discussion</h3>
+<div class="formula">x²+mx+m=0</div>
+<p>Discute le nombre de solutions réelles selon m.</p>
+<textarea id="reasonM" placeholder="Calcule Δ(m) puis étudie son signe…"></textarea>
 <div class="actions">
-
-<button class="btn btn-warning"
-onclick="showParameterHint()">
-Indice
-</button>
-
-<button class="btn btn-secondary"
-onclick="showParameterCorrection()">
-Correction détaillée
-</button>
-
+<button class="btn btn-warning" onclick="reasonMHint()">Indice</button>
+<button class="btn btn-secondary" onclick="reasonMCorrection()">Correction</button>
 </div>
-
-<div id="parameterFeedback"></div>
-
+<div id="reasonMFeedback"></div>
 </div>
-
 </section>
-
-<!-- DEFIS -->
 
 <section id="challenge" class="page">
-
-<h2>5. Défis — formes plus complexes</h2>
-
+<h2>5. Défis — série avancée</h2>
 <div class="panel">
-
-<p>
-Cette partie s'inspire de la dernière série du dossier :
-fractions rationnelles, expressions répétées et équations avec racines carrées.
-</p>
-
-<div class="difficulty-row">
-
-<button class="btn btn-secondary"
-onclick="setChallengeType('rational')">
-Fractions
-</button>
-
-<button class="btn btn-secondary"
-onclick="setChallengeType('substitution')">
-Substitution
-</button>
-
-<button class="btn btn-secondary"
-onclick="setChallengeType('radical')">
-Racines carrées
-</button>
-
-<button class="btn btn-purple"
-onclick="setChallengeType('mixed')">
-Mélange
-</button>
-
+<p>Choisis une famille issue des équations plus complexes du dossier.</p>
+<div class="actions">
+<button class="btn btn-secondary" onclick="setChallenge('rational')">Fractions</button>
+<button class="btn btn-secondary" onclick="setChallenge('substitution')">Substitution</button>
+<button class="btn btn-secondary" onclick="setChallenge('radical')">Racines carrées</button>
+<button class="btn btn-purple" onclick="setChallenge('mixed')">Mélange</button>
 </div>
-
 </div>
-
-<div id="challengeArea"
-class="exercise-box">
-</div>
-
+<div id="challengeArea" class="exercise-box"></div>
 </section>
-
-<!-- QUIZ -->
 
 <section id="quiz" class="page">
-
 <h2>6. Quiz final</h2>
-
 <div class="panel">
-
-<p>
-Le quiz comporte 16 questions. Il mélange résolution, factorisation,
-discriminant, signe des racines, paramètres et formes plus complexes.
-</p>
-
-<button class="btn btn-success"
-onclick="startQuiz()">
-Démarrer le quiz
-</button>
-
+<p>16 questions aléatoires. La note finale est calculée sur 20.</p>
+<button class="btn btn-success" onclick="startQuiz()">Démarrer le quiz</button>
 </div>
-
 <div id="quizArea"></div>
-
 </section>
-
-<!-- PROGRES -->
 
 <section id="progress" class="page">
-
 <h2>7. Mes progrès</h2>
-
-<div id="stats"
-class="grid4"></div>
-
-<div class="grid2"
-style="margin-top:18px">
-
-<div class="panel">
-
-<h3>Compétences</h3>
-
-<div id="skillsProgress"></div>
-
+<div id="stats" class="grid4"></div>
+<div class="grid2" style="margin-top:18px">
+<div class="panel"><h3>Compétences</h3><div id="skillsProgress"></div></div>
+<div class="panel"><h3>Recommandations</h3><div id="recommendations"></div></div>
 </div>
-
-<div class="panel">
-
-<h3>Recommandations</h3>
-
-<div id="recommendations"></div>
-
-</div>
-
-</div>
-
-<div class="panel">
-
-<h3>Progression dans les séries</h3>
-
-<div id="seriesDashboard"></div>
-
-</div>
-
-<div class="panel">
-
-<h3>Historique récent</h3>
-
-<div id="history"></div>
-
-</div>
-
+<div class="panel"><h3>Progression par série</h3><div id="seriesDashboard"></div></div>
+<div class="panel"><h3>Historique</h3><div id="history"></div></div>
 </section>
+
+<section id="teacher" class="page">
+<h2>👨‍🏫 Espace enseignant</h2>
+
+<div id="teacherLogin" class="teacher-lock panel">
+<h3>Accès protégé</h3>
+<p>Entrez le mot de passe enseignant.</p>
+<div class="answer-row">
+<div>
+<label for="teacherPassword">Mot de passe</label>
+<input id="teacherPassword" type="password" autocomplete="current-password">
+</div>
+<button class="btn btn-dark" onclick="teacherLogin()">Se connecter</button>
+</div>
+<div id="teacherLoginFeedback"></div>
+</div>
+
+<div id="teacherPanel" class="hidden">
+
+<div class="grid4">
+<div class="card stat">Tentatives<strong id="tAttempts">0</strong></div>
+<div class="card stat">Réussites<strong id="tSuccess">0</strong></div>
+<div class="card stat">Taux<strong id="tRate">0%</strong></div>
+<div class="card stat">Meilleur quiz<strong id="tQuiz">0/20</strong></div>
+</div>
+
+<div class="teacher-tools" style="margin-top:18px">
+
+<div class="teacher-tool">
+<h3>Réglages pédagogiques</h3>
+<div class="teacher-settings">
+<label for="teacherDefaultDifficulty">Difficulté par défaut</label>
+<select id="teacherDefaultDifficulty">
+<option value="1">Accessible</option>
+<option value="2">Intermédiaire</option>
+<option value="3">Avancée</option>
+</select>
+
+<label for="teacherQuizCount">Nombre de questions du quiz</label>
+<select id="teacherQuizCount">
+<option value="10">10</option>
+<option value="15">15</option>
+<option value="16" selected>16</option>
+<option value="20">20</option>
+</select>
+
+<label>Modules actifs</label>
+<div id="moduleToggles"></div>
+
+<button class="btn btn-primary" onclick="saveTeacherSettings()">Enregistrer les réglages</button>
+</div>
+</div>
+
+<div class="teacher-tool">
+<h3>Analyse des erreurs</h3>
+<div id="teacherWeaknesses"></div>
+</div>
+
+<div class="teacher-tool">
+<h3>Exercices imprimables</h3>
+<p>Génère 10 exercices avec corrigé séparé.</p>
+<div class="answer-row">
+<div>
+<label for="printDifficulty">Niveau</label>
+<select id="printDifficulty">
+<option value="1">Accessible</option>
+<option value="2" selected>Intermédiaire</option>
+<option value="3">Avancé</option>
+</select>
+</div>
+</div>
+<div class="actions">
+<button class="btn btn-purple" onclick="generatePrintable()">Générer 10 exercices</button>
+<button class="btn btn-secondary" onclick="printPrintable()">🖨️ Imprimer</button>
+</div>
+</div>
+
+<div class="teacher-tool">
+<h3>Données et projection</h3>
+<div class="actions">
+<button class="btn btn-success" onclick="exportCSV()">Exporter CSV</button>
+<button class="btn btn-secondary" onclick="toggleProjection()">Mode projection</button>
+<button class="btn btn-danger" onclick="resetProgress()">Réinitialiser les résultats</button>
+</div>
+</div>
+
+</div>
+
+<div class="panel" style="margin-top:18px">
+<h3>Résultats anonymisés</h3>
+<div id="teacherResults"></div>
+</div>
+
+<div id="printableArea" class="panel hidden">
+<h3>Feuille générée</h3>
+<div id="printableContent"></div>
+</div>
+
+<div class="actions no-print">
+<button class="btn btn-danger" onclick="teacherLogout()">Se déconnecter</button>
+</div>
+
+</div>
+</section>
+
+<section id="printPage" class="page print-sheet"></section>
 
 </main>
 
 <script>
 "use strict";
 
-/* =========================================================
-   CONFIGURATION
-   ========================================================= */
-
 const CONFIG={
-  storageKey:"equations_second_degre_dossier_v1",
-  modules:[
-    "course",
-    "theory",
-    "practice",
-    "reason",
-    "challenge",
-    "quiz"
-  ]
+  storageKey:"equations_2e_degre_dossier_v5",
+  teacherPassword:"prof2026",
+  modules:["course","theory","practice","reason","challenge","quiz"]
 };
-
-/* =========================================================
-   ETAT
-   ========================================================= */
 
 function defaultState(){
   return{
@@ -1500,15 +543,7 @@ function defaultState(){
     attempts:0,
     successes:0,
     quizBest:0,
-    seriesSuccess:{
-      1:0,
-      2:0,
-      3:0,
-      4:0,
-      5:0,
-      6:0,
-      challenge:0
-    },
+    seriesSuccess:{1:0,2:0,3:0,4:0,5:0,6:0,challenge:0},
     skills:{
       Resolution:[0,0],
       Factorisation:[0,0],
@@ -1518,60 +553,33 @@ function defaultState(){
       Rationnelles:[0,0],
       Irrationnelles:[0,0]
     },
-    history:[]
+    history:[],
+    settings:{
+      difficulty:2,
+      quizCount:16,
+      activeModules:{
+        course:true,theory:true,practice:true,reason:true,challenge:true,quiz:true
+      }
+    }
   };
 }
 
 function loadState(){
-
   try{
-
-    const raw=
-      localStorage.getItem(
-        CONFIG.storageKey
-      );
-
-    if(!raw){
-      return defaultState();
-    }
-
-    const parsed=
-      JSON.parse(raw);
-
-    const base=
-      defaultState();
-
+    const raw=localStorage.getItem(CONFIG.storageKey);
+    if(!raw)return defaultState();
+    const p=JSON.parse(raw),b=defaultState();
     return{
-      ...base,
-      ...parsed,
-      completed:{
-        ...base.completed,
-        ...(parsed.completed||{})
-      },
-      seriesSuccess:{
-        ...base.seriesSuccess,
-        ...(parsed.seriesSuccess||{})
-      },
-      skills:{
-        ...base.skills,
-        ...(parsed.skills||{})
-      },
-      history:
-        Array.isArray(parsed.history)
-        ?parsed.history
-        :[]
+      ...b,...p,
+      completed:{...b.completed,...(p.completed||{})},
+      seriesSuccess:{...b.seriesSuccess,...(p.seriesSuccess||{})},
+      skills:{...b.skills,...(p.skills||{})},
+      settings:{
+        ...b.settings,...(p.settings||{}),
+        activeModules:{...b.settings.activeModules,...((p.settings&&p.settings.activeModules)||{})}
+      }
     };
-
-  }catch(error){
-
-    console.warn(
-      "Chargement impossible.",
-      error
-    );
-
-    return defaultState();
-
-  }
+  }catch(e){return defaultState()}
 }
 
 const state=loadState();
@@ -1579,3733 +587,717 @@ const state=loadState();
 let currentSeries=1;
 let currentExercise=null;
 let exerciseAttempts=0;
+let exerciseValidated=false;
+let exerciseCorrectionShown=false;
 
 let challengeType="mixed";
 let currentChallenge=null;
 let challengeAttempts=0;
+let challengeValidated=false;
+let challengeCorrectionShown=false;
 
 let currentQuiz=[];
 let quizAnswers=[];
+let quizFinished=false;
 
-/* =========================================================
-   SAUVEGARDE
-   ========================================================= */
+let teacherUnlocked=false;
+let projectionMode=false;
 
 function saveState(){
-
-  try{
-
-    localStorage.setItem(
-      CONFIG.storageKey,
-      JSON.stringify(state)
-    );
-
-  }catch(error){
-
-    console.warn(
-      "Sauvegarde impossible.",
-      error
-    );
-
-  }
-
+  localStorage.setItem(CONFIG.storageKey,JSON.stringify(state));
   updateGlobalProgress();
 }
 
-function recordResult(
-  skill,
-  success,
-  label,
-  series=null
-){
-
+function recordResult(skill,success,label,series=null){
   state.attempts++;
-
-  if(!state.skills[skill]){
-    state.skills[skill]=[0,0];
-  }
-
+  if(!state.skills[skill])state.skills[skill]=[0,0];
   state.skills[skill][1]++;
-
   if(success){
-
     state.successes++;
-
     state.skills[skill][0]++;
-
     if(series!==null){
-
-      if(
-        state.seriesSuccess[series]===
-        undefined
-      ){
-        state.seriesSuccess[series]=0;
-      }
-
+      if(state.seriesSuccess[series]===undefined)state.seriesSuccess[series]=0;
       state.seriesSuccess[series]++;
-
     }
-
   }
-
   state.history.unshift({
-    date:
-      new Date()
-      .toLocaleString("fr-BE"),
-    skill,
-    success,
-    label
+    date:new Date().toLocaleString("fr-BE"),
+    skill,success,label
   });
-
-  state.history=
-    state.history.slice(0,40);
-
+  state.history=state.history.slice(0,80);
   saveState();
 }
 
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
-
-document
-.querySelectorAll(
-  ".nav-inner button"
-)
-.forEach(button=>{
-
-  button.addEventListener(
-    "click",
-    ()=>{
-      go(
-        button.dataset.page
-      );
-    }
-  );
-
+document.querySelectorAll(".nav button").forEach(b=>{
+  b.addEventListener("click",()=>go(b.dataset.page));
 });
 
 function go(id){
-
-  const target=
-    document.getElementById(id);
-
-  if(!target){
+  if(id!=="teacher" && state.settings.activeModules[id]===false){
+    alert("Ce module a été désactivé par l'enseignant.");
     return;
   }
-
-  document
-  .querySelectorAll(".page")
-  .forEach(page=>{
-    page.classList.remove("active");
-  });
-
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  const target=document.getElementById(id);
+  if(!target)return;
   target.classList.add("active");
-
-  document
-  .querySelectorAll(
-    ".nav-inner button"
-  )
-  .forEach(button=>{
-
-    button.classList.toggle(
-      "active",
-      button.dataset.page===id
-    );
-
-  });
-
-  if(
-    CONFIG.modules.includes(id)
-  ){
-
-    state.completed[id]=true;
-    saveState();
-
-  }
-
-  if(id==="progress"){
-    renderProgress();
-  }
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+  document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
+  if(CONFIG.modules.includes(id)){state.completed[id]=true;saveState()}
+  if(id==="progress")renderProgress();
+  if(id==="teacher"&&teacherUnlocked)renderTeacher();
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
 function updateGlobalProgress(){
-
-  const done=
-    CONFIG.modules.filter(
-      module=>
-        state.completed[module]
-    ).length;
-
-  const pct=
-    Math.round(
-      done/
-      CONFIG.modules.length*
-      100
-    );
-
-  document
-  .getElementById(
-    "globalProgressText"
-  )
-  .textContent=
-    pct+" %";
-
-  document
-  .getElementById(
-    "globalProgressBar"
-  )
-  .style.width=
-    pct+"%";
+  const active=CONFIG.modules.filter(m=>state.settings.activeModules[m]!==false);
+  const done=active.filter(m=>state.completed[m]).length;
+  const pct=active.length?Math.round(done/active.length*100):0;
+  document.getElementById("globalProgressText").textContent=pct+" %";
+  document.getElementById("globalProgressBar").style.width=pct+"%";
+  document.querySelectorAll(".nav button").forEach(b=>{
+    const id=b.dataset.page;
+    if(CONFIG.modules.includes(id))b.style.display=state.settings.activeModules[id]===false?"none":"";
+  });
 }
 
-/* =========================================================
-   OUTILS
-   ========================================================= */
-
-function randInt(min,max){
-  return Math.floor(
-    Math.random()*
-    (max-min+1)
-  )+min;
+function randInt(min,max){return Math.floor(Math.random()*(max-min+1))+min}
+function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function formatNumber(v){
+  if(!Number.isFinite(v))return "—";
+  if(Math.abs(v-Math.round(v))<1e-9)return String(Math.round(v));
+  return Number(v.toFixed(3)).toString().replace(".",",");
 }
-
-function pick(array){
-  return array[
-    Math.floor(
-      Math.random()*
-      array.length
-    )
-  ];
-}
-
-function formatNumber(value){
-
-  if(
-    !Number.isFinite(value)
-  ){
-    return "—";
-  }
-
-  if(
-    Math.abs(
-      value-
-      Math.round(value)
-    )<1e-9
-  ){
-    return String(
-      Math.round(value)
-    );
-  }
-
-  return Number(
-    value.toFixed(3)
-  )
-  .toString()
-  .replace(".",",");
-}
-
-function parseNumber(value){
-
-  const text=
-    String(value)
-    .trim()
-    .replace(",",".")
-    .replace(/\s/g,"");
-
-  if(text.includes("/")){
-
-    const parts=
-      text.split("/");
-
-    if(parts.length===2){
-
-      const a=
-        Number(parts[0]);
-
-      const b=
-        Number(parts[1]);
-
-      if(
-        Number.isFinite(a) &&
-        Number.isFinite(b) &&
-        b!==0
-      ){
-        return a/b;
-      }
-
+function parseNumber(v){
+  let s=String(v).trim().replace(",",".").replace(/\s/g,"");
+  if(s.includes("/")){
+    const p=s.split("/");
+    if(p.length===2){
+      const a=Number(p[0]),b=Number(p[1]);
+      if(Number.isFinite(a)&&Number.isFinite(b)&&b!==0)return a/b;
     }
-
   }
-
-  return Number(text);
+  return Number(s);
 }
-
-function numericCorrect(
-  given,
-  expected,
-  tolerance=.01
-){
-
-  const n=
-    parseNumber(given);
-
-  return(
-    Number.isFinite(n) &&
-    Math.abs(
-      n-expected
-    )<=tolerance
-  );
+function numericCorrect(g,e,t=.01){
+  const n=parseNumber(g);
+  return Number.isFinite(n)&&Math.abs(n-e)<=t;
 }
-
-function parseSet(value){
-
-  const cleaned=
-    String(value)
-    .replace(/[{}\[\]]/g,"")
-    .replace(/x\s*=/gi,"")
-    .replace(/,/g,".")
-    .trim();
-
-  const chunks=
-    cleaned
-    .split(/[;|\s]+/)
-    .filter(Boolean);
-
-  const values=
-    chunks.map(
-      parseNumber
-    );
-
-  if(
-    values.some(
-      x=>!Number.isFinite(x)
-    )
-  ){
-    return null;
-  }
-
-  return[
-    ...new Set(values)
-  ]
-  .sort((a,b)=>a-b);
+function parseSet(v){
+  const s=String(v).replace(/[{}\[\]]/g,"").replace(/x\s*=/gi,"").trim();
+  const parts=s.split(/[;|\s]+/).filter(Boolean).map(parseNumber);
+  if(parts.some(v=>!Number.isFinite(v)))return null;
+  return [...new Set(parts)].sort((a,b)=>a-b);
 }
-
-function setCorrect(
-  given,
-  expected
-){
-
-  const received=
-    parseSet(given);
-
-  if(!received){
-    return false;
-  }
-
-  const target=
-    [...expected]
-    .sort((a,b)=>a-b);
-
-  if(
-    received.length!==
-    target.length
-  ){
-    return false;
-  }
-
-  return received.every(
-    (x,index)=>
-      Math.abs(
-        x-target[index]
-      )<.01
-  );
+function setCorrect(g,e,t=.015){
+  const r=parseSet(g),target=[...e].sort((a,b)=>a-b);
+  return !!r&&r.length===target.length&&r.every((v,i)=>Math.abs(v-target[i])<=t);
 }
-
-function escapeHTML(text){
-
-  return String(text)
-  .replace(
-    /[&<>"']/g,
-    char=>({
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#039;"
-    })[char]
-  );
+function escapeHTML(s){
+  return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
 }
-
-function signedTerm(
-  coefficient,
-  variable=""
-){
-
-  if(coefficient===0){
-    return "";
-  }
-
-  const abs=
-    Math.abs(coefficient);
-
-  return(
-    coefficient>0
-      ?" + "
-      :" − "
-  )+
-  (
-    abs===1 &&
-    variable
-      ?""
-      :abs
-  )+
-  variable;
+function signedTerm(c,v=""){
+  if(c===0)return "";
+  const a=Math.abs(c);
+  return (c>0?" + ":" − ")+(a===1&&v?"":a)+v;
 }
-
 function polynomialText(a,b,c){
-
-  let text="";
-
-  if(a===1){
-    text="x²";
-  }else if(a===-1){
-    text="−x²";
-  }else{
-    text=a+"x²";
-  }
-
-  text+=
-    signedTerm(
-      b,"x"
-    );
-
-  text+=
-    signedTerm(
-      c,""
-    );
-
-  return text;
+  let t=a===1?"x²":a===-1?"−x²":a+"x²";
+  return t+signedTerm(b,"x")+signedTerm(c,"");
 }
-
-function discriminant(
-  a,b,c
-){
-  return b*b-4*a*c;
+function discriminant(a,b,c){return b*b-4*a*c}
+function roots(a,b,c){
+  const d=discriminant(a,b,c);
+  if(d<0)return[];
+  if(Math.abs(d)<1e-9)return[-b/(2*a)];
+  const s=Math.sqrt(d);
+  return[(-b-s)/(2*a),(-b+s)/(2*a)].sort((x,y)=>x-y);
 }
-
-function roots(
-  a,b,c
-){
-
-  const delta=
-    discriminant(
-      a,b,c
-    );
-
-  if(delta<0){
-    return [];
-  }
-
-  if(
-    Math.abs(delta)<1e-9
-  ){
-    return[
-      -b/(2*a)
-    ];
-  }
-
-  const sqrt=
-    Math.sqrt(delta);
-
-  return[
-    (-b-sqrt)/(2*a),
-    (-b+sqrt)/(2*a)
-  ]
-  .sort((x,y)=>x-y);
+function factorFromRoot(r){
+  if(r>0)return `x−${r}`;
+  if(r<0)return `x+${Math.abs(r)}`;
+  return "x";
 }
-
-/* =========================================================
-   COURS VIDEO
-   ========================================================= */
+function normalizeText(v){
+  return String(v).toLowerCase().replace(/\s/g,"").replace(/−/g,"-").replace(/²/g,"^2");
+}
 
 const videoSlides=[
-{
-  section:"Bases",
-  title:"Mettre l'équation sous forme standard",
-  formula:"ax²+bx+c=0",
-  text:
-  "Avant de choisir une méthode, regroupe tous les termes dans un même membre.",
-  narration:
-  "Première étape : mettre l'équation sous la forme a x carré plus b x plus c égale zéro. Il faut simplifier les deux membres et regrouper tous les termes."
-},
-{
-  section:"Bases",
-  title:"Identifier les coefficients",
-  formula:"a : coefficient de x² • b : coefficient de x • c : terme constant",
-  text:
-  "Conserve les signes. Si le terme en x n'apparaît pas, alors b=0.",
-  narration:
-  "Identifie ensuite les coefficients a, b et c en faisant très attention aux signes. Si un terme est absent, son coefficient vaut zéro."
-},
-{
-  section:"Bases",
-  title:"Observer avant de calculer",
-  formula:"Produit ? Identité remarquable ? Factorisation ? Δ ?",
-  text:
-  "Le discriminant n'est pas toujours la méthode la plus rapide.",
-  narration:
-  "Avant d'utiliser le discriminant, observe la forme de l'équation. Une équation déjà factorisée ou une différence de carrés se résout souvent beaucoup plus rapidement."
-},
-{
-  section:"Bases",
-  title:"Exemple de mise en forme",
-  formula:"x²−2x=4  →  x²−2x−4=0",
-  text:
-  "On transpose 4 afin d'obtenir zéro dans un membre.",
-  narration:
-  "Par exemple x carré moins deux x égale quatre devient x carré moins deux x moins quatre égale zéro."
-},
-{
-  section:"Factorisation",
-  title:"Produit nul",
-  formula:"A·B=0 ⇔ A=0 ou B=0",
-  text:
-  "Une équation factorisée se résout en annulant chacun des facteurs.",
-  narration:
-  "La règle du produit nul affirme qu'un produit est nul si et seulement si au moins un de ses facteurs est nul."
-},
-{
-  section:"Factorisation",
-  title:"Facteur commun",
-  formula:"x²+5x=x(x+5)",
-  text:
-  "Lorsque tous les termes contiennent x, pense au facteur commun.",
-  narration:
-  "Pour x carré plus cinq x, on peut mettre x en facteur et obtenir x fois x plus cinq."
-},
-{
-  section:"Factorisation",
-  title:"Différence de carrés",
-  formula:"x²−a²=(x−a)(x+a)",
-  text:
-  "Exemple : x²−9=(x−3)(x+3).",
-  narration:
-  "La différence de deux carrés permet de factoriser x carré moins a carré en x moins a fois x plus a."
-},
-{
-  section:"Factorisation",
-  title:"Carré parfait",
-  formula:"x²+2x+1=(x+1)²",
-  text:
-  "Une identité remarquable peut également transformer le trinôme en produit.",
-  narration:
-  "Un trinôme comme x carré plus deux x plus un est le carré de x plus un."
-},
-{
-  section:"Discriminant",
-  title:"Calculer Δ",
-  formula:"Δ=b²−4ac",
-  text:
-  "Le discriminant indique le nombre de racines réelles.",
-  narration:
-  "Lorsque la factorisation n'est pas évidente, on peut calculer le discriminant delta égal b carré moins quatre a c."
-},
-{
-  section:"Discriminant",
-  title:"Δ positif",
-  formula:"Δ>0 → deux racines réelles",
-  text:
-  "On utilise alors les deux formules avec −√Δ et +√Δ.",
-  narration:
-  "Si delta est strictement positif, l'équation possède deux racines réelles distinctes."
-},
-{
-  section:"Discriminant",
-  title:"Δ nul",
-  formula:"Δ=0 → une racine double",
-  text:
-  "La racine vaut −b/(2a).",
-  narration:
-  "Si delta vaut zéro, l'équation possède une racine réelle double égale à moins b sur deux a."
-},
-{
-  section:"Discriminant",
-  title:"Δ négatif",
-  formula:"Δ<0 → aucune racine réelle",
-  text:
-  "Dans l'ensemble des réels, l'ensemble solution est vide.",
-  narration:
-  "Si delta est négatif, il n'existe aucune racine réelle."
-},
-{
-  section:"Discriminant",
-  title:"Attention aux signes",
-  formula:"b=−5 → b²=(−5)²=25",
-  text:
-  "Les parenthèses évitent de nombreuses erreurs.",
-  narration:
-  "Lorsque b est négatif, écris toujours le coefficient entre parenthèses avant de calculer son carré."
-},
-{
-  section:"Racines",
-  title:"Formules générales",
-  formula:"x₁=(-b−√Δ)/(2a) • x₂=(-b+√Δ)/(2a)",
-  text:
-  "Ces formules sont valables lorsque Δ est strictement positif.",
-  narration:
-  "Lorsque delta est positif, les racines valent moins b moins racine de delta sur deux a, et moins b plus racine de delta sur deux a."
-},
-{
-  section:"Racines",
-  title:"Somme des racines",
-  formula:"x₁+x₂=−b/a",
-  text:
-  "Cette relation est utile pour étudier leur signe sans toujours les calculer.",
-  narration:
-  "La somme des racines vaut moins b sur a."
-},
-{
-  section:"Racines",
-  title:"Produit des racines",
-  formula:"x₁x₂=c/a",
-  text:
-  "Un produit négatif signifie que les deux racines sont de signes opposés.",
-  narration:
-  "Le produit des racines vaut c sur a. S'il est négatif, les racines sont de signes opposés."
-},
-{
-  section:"Racines",
-  title:"Racine nulle",
-  formula:"x₁x₂=0",
-  text:
-  "Une racine est nulle lorsque le produit des racines vaut zéro.",
-  narration:
-  "Pour qu'au moins une racine soit nulle, le produit des racines doit être égal à zéro."
-},
-{
-  section:"Paramètres",
-  title:"Pourquoi discuter ?",
-  formula:"Δ devient une expression en m",
-  text:
-  "Le nombre de racines peut varier selon la valeur du paramètre.",
-  narration:
-  "Lorsqu'un coefficient contient un paramètre, le discriminant devient lui aussi une expression dépendant de ce paramètre."
-},
-{
-  section:"Paramètres",
-  title:"Étudier le signe de Δ(m)",
-  formula:"Δ(m)>0, Δ(m)=0, Δ(m)<0",
-  text:
-  "On obtient différentes familles de solutions.",
-  narration:
-  "Il faut résoudre les inégalités delta de m positif, nul ou négatif afin de déterminer le nombre de solutions."
-},
-{
-  section:"Paramètres",
-  title:"Cas particulier de a(m)",
-  formula:"a(m)=0",
-  text:
-  "Si le coefficient de x² peut s'annuler, l'équation peut devenir du premier degré.",
-  narration:
-  "Lorsque le coefficient du terme en x carré dépend du paramètre, il faut traiter séparément les valeurs qui annulent ce coefficient."
-},
-{
-  section:"Paramètres",
-  title:"Deux racines positives",
-  formula:"Δ>0, x₁x₂>0 et x₁+x₂>0",
-  text:
-  "Les trois conditions permettent de garantir deux racines strictement positives.",
-  narration:
-  "Pour obtenir deux racines strictement positives, il faut deux racines réelles distinctes, un produit positif et une somme positive."
-},
-{
-  section:"Paramètres",
-  title:"Racines inverses",
-  formula:"x₁x₂=1",
-  text:
-  "Deux racines non nulles sont inverses lorsque leur produit vaut 1.",
-  narration:
-  "Deux racines sont inverses l'une de l'autre lorsque leur produit vaut un."
-},
-{
-  section:"Fractions",
-  title:"Équation rationnelle",
-  formula:"x+1/x=3",
-  text:
-  "La première condition est x≠0. On multiplie ensuite par x.",
-  narration:
-  "Pour une équation contenant une inconnue au dénominateur, commence toujours par exclure les valeurs interdites."
-},
-{
-  section:"Fractions",
-  title:"Valeurs interdites",
-  formula:"dénominateur ≠ 0",
-  text:
-  "Une valeur qui annule un dénominateur ne peut jamais être solution.",
-  narration:
-  "Une valeur qui annule un dénominateur doit être exclue avant le calcul et ne peut jamais apparaître dans l'ensemble des solutions."
-},
-{
-  section:"Substitution",
-  title:"Expression répétée",
-  formula:"t = expression répétée",
-  text:
-  "Une substitution peut transformer l'équation en une équation du second degré plus familière.",
-  narration:
-  "Lorsqu'une même expression apparaît plusieurs fois, on peut la remplacer temporairement par la lettre t."
-},
-{
-  section:"Radicaux",
-  title:"Conditions d'existence",
-  formula:"√A existe si A≥0",
-  text:
-  "Les expressions placées sous une racine carrée doivent être positives ou nulles.",
-  narration:
-  "Avant de résoudre une équation avec une racine carrée, détermine les conditions d'existence en imposant que le radicand soit positif ou nul."
-},
-{
-  section:"Radicaux",
-  title:"Élever au carré",
-  formula:"√A=B → A=B²",
-  text:
-  "Cette étape peut créer des solutions parasites.",
-  narration:
-  "Après avoir isolé une racine carrée, on peut élever les deux membres au carré. Mais cette transformation peut introduire des solutions parasites."
-},
-{
-  section:"Radicaux",
-  title:"Vérification indispensable",
-  formula:"Tester dans l'équation initiale",
-  text:
-  "Chaque solution candidate doit être vérifiée.",
-  narration:
-  "À la fin d'une équation irrationnelle, chaque valeur trouvée doit être remplacée dans l'équation de départ."
-},
-{
-  section:"Conclusion",
-  title:"La méthode générale",
-  formula:"Observer → Transformer → Résoudre → Vérifier",
-  text:
-  "Choisis la méthode adaptée à la forme de l'équation et donne clairement l'ensemble solution.",
-  narration:
-  "La méthode générale est : observer la forme de l'équation, la transformer correctement, la résoudre, puis vérifier les solutions et donner l'ensemble solution."
-}
+["Bases","Mettre sous forme standard","ax²+bx+c=0","Regroupe tous les termes dans un même membre.","On commence par mettre l'équation sous la forme a x carré plus b x plus c égale zéro."],
+["Bases","Identifier a, b et c","a≠0","Conserve soigneusement les signes.","Identifie les coefficients a, b et c en conservant leurs signes."],
+["Bases","Observer avant de calculer","Produit ? Factorisation ? Δ ?","Le discriminant n'est pas toujours la méthode la plus rapide.","Observe d'abord la forme de l'équation avant de choisir une méthode."],
+["Bases","Exemple","x²−2x=4 → x²−2x−4=0","On ramène tous les termes dans un membre.","On transpose quatre pour obtenir zéro dans le second membre."],
+["Factorisation","Produit nul","A·B=0 ⇔ A=0 ou B=0","Très efficace si l'expression est déjà factorisée.","Un produit est nul si au moins un facteur est nul."],
+["Factorisation","Facteur commun","x²+5x=x(x+5)","Cherche un facteur commun avant Δ.","Dans x carré plus cinq x, on met x en facteur."],
+["Factorisation","Différence de carrés","x²−a²=(x−a)(x+a)","Exemple : x²−9=(x−3)(x+3).","Une différence de carrés se factorise immédiatement."],
+["Factorisation","Carré parfait","x²+2x+1=(x+1)²","Reconnaître une identité remarquable fait gagner du temps.","Un trinôme peut parfois être un carré parfait."],
+["Discriminant","Calculer Δ","Δ=b²−4ac","Δ donne le nombre de racines réelles.","Le discriminant delta vaut b carré moins quatre a c."],
+["Discriminant","Δ>0","Deux racines","La parabole coupe l'axe des abscisses deux fois.","Si delta est positif, il y a deux racines réelles distinctes."],
+["Discriminant","Δ=0","Une racine double","La racine vaut −b/(2a).","Si delta vaut zéro, il y a une racine double."],
+["Discriminant","Δ<0","Aucune racine réelle","Dans ℝ, l'ensemble solution est vide.","Si delta est négatif, il n'y a aucune racine réelle."],
+["Discriminant","Attention aux signes","b=−5 → b²=(−5)²=25","Utilise les parenthèses.","Les parenthèses évitent beaucoup d'erreurs de signe."],
+["Racines","Formules","x=(-b±√Δ)/(2a)","Deux formules si Δ>0.","On utilise moins b moins ou plus racine de delta sur deux a."],
+["Racines","Somme","x₁+x₂=−b/a","Utile sans calculer les racines.","La somme des racines vaut moins b sur a."],
+["Racines","Produit","x₁x₂=c/a","Un produit négatif indique des signes opposés.","Le produit des racines vaut c sur a."],
+["Racines","Racines inverses","x₁x₂=1","C'est une condition utile avec un paramètre.","Deux racines inverses ont pour produit un."],
+["Paramètres","Δ dépend d'un paramètre","Δ=Δ(m)","Il faut étudier son signe.","Avec un paramètre, le discriminant dépend lui aussi du paramètre."],
+["Paramètres","Deux racines distinctes","Δ(m)>0","Résous l'inéquation.","Deux racines distinctes exigent un discriminant strictement positif."],
+["Paramètres","Cas dégénéré","a(m)=0","L'équation peut devenir du premier degré.","Il faut traiter séparément les valeurs qui annulent le coefficient de x carré."],
+["Paramètres","Deux racines positives","Δ>0, produit>0, somme>0","Trois conditions sont nécessaires.","Deux racines positives exigent deux racines réelles, un produit positif et une somme positive."],
+["Paramètres","Racine nulle","c=0 si a≠0","Le produit des racines vaut c/a.","Une racine nulle apparaît lorsque le produit est nul."],
+["Fractions","Valeurs interdites","dénominateur ≠ 0","Toujours commencer par les exclure.","Une valeur qui annule un dénominateur ne peut jamais être solution."],
+["Fractions","Réduire l'équation","Multiplier par un dénominateur commun","Puis résoudre l'équation obtenue.","Après avoir écrit les valeurs interdites, on supprime les dénominateurs correctement."],
+["Substitution","Poser t","t=x² ou t=1/x","La substitution simplifie l'expression.","Lorsqu'une expression se répète, on peut poser t égal à cette expression."],
+["Radicaux","Conditions","√A existe si A≥0","Écris les conditions avant de calculer.","Sous une racine carrée, le radicand doit être positif ou nul."],
+["Radicaux","Élever au carré","√A=B → A=B²","Des solutions parasites peuvent apparaître.","Élever au carré peut créer des solutions parasites."],
+["Radicaux","Vérification","Tester dans l'équation initiale","Étape obligatoire.","Chaque solution candidate doit être vérifiée dans l'équation de départ."],
+["Conclusion","Méthode générale","Observer → Transformer → Résoudre → Vérifier","Donne ensuite clairement l'ensemble solution.","Observe, transforme, résous, vérifie et termine par l'ensemble des solutions."]
 ];
 
-let videoIndex=0;
-let videoPlaying=false;
-let narrationEnabled=false;
-let currentUtterance=null;
-let slideTimer=null;
-let frenchVoices=[];
+let videoIndex=0,videoPlaying=false,narrationEnabled=false,slideTimer=null,frenchVoices=[];
 
 function renderVideo(){
-
-  const slide=
-    videoSlides[videoIndex];
-
-  document
-  .getElementById(
-    "videoSlide"
-  )
-  .innerHTML=`
-
-    <div class="video-section">
-      ${slide.section}
-    </div>
-
-    <div class="video-title">
-      ${slide.title}
-    </div>
-
-    <div class="video-formula">
-      ${slide.formula}
-    </div>
-
-    <div class="video-text">
-      ${slide.text}
-    </div>
-  `;
-
-  document
-  .getElementById(
-    "videoProgress"
-  )
-  .style.width=
-    (
-      (videoIndex+1)/
-      videoSlides.length*
-      100
-    )+"%";
-
-  document
-  .getElementById(
-    "videoCounter"
-  )
-  .textContent=
-    `${videoIndex+1} / ${videoSlides.length}`;
-
-  if(
-    narrationEnabled &&
-    videoPlaying
-  ){
-    speakCurrentSlide(true);
-  }
+  const s=videoSlides[videoIndex];
+  document.getElementById("videoSlide").innerHTML=`
+  <div class="video-section">${s[0]}</div>
+  <div class="video-title">${s[1]}</div>
+  <div class="video-formula">${s[2]}</div>
+  <div class="video-text">${s[3]}</div>`;
+  document.getElementById("videoProgress").style.width=((videoIndex+1)/videoSlides.length*100)+"%";
+  document.getElementById("videoCounter").textContent=`${videoIndex+1} / ${videoSlides.length}`;
 }
-
 function loadVoices(){
-
-  if(
-    !("speechSynthesis" in window)
-  ){
-
-    document
-    .getElementById(
-      "voiceStatus"
-    )
-    .textContent=
-      "La synthèse vocale n'est pas disponible dans ce navigateur.";
-
-    return;
-  }
-
-  frenchVoices=
-    speechSynthesis
-    .getVoices()
-    .filter(
-      voice=>
-        voice.lang &&
-        voice.lang
-        .toLowerCase()
-        .startsWith("fr")
-    );
-
-  const select=
-    document
-    .getElementById(
-      "voiceSelect"
-    );
-
-  select.innerHTML=
-    '<option value="">Voix française automatique</option>'+
-    frenchVoices
-    .map(
-      voice=>
-        `<option value="${escapeHTML(voice.name)}">${escapeHTML(voice.name)} — ${escapeHTML(voice.lang)}</option>`
-    )
-    .join("");
-
-  document
-  .getElementById(
-    "voiceStatus"
-  )
-  .textContent=
-    frenchVoices.length
-      ?`${frenchVoices.length} voix française(s) détectée(s).`
-      :"Le navigateur utilisera sa voix française par défaut si elle est disponible.";
+  if(!("speechSynthesis" in window)){document.getElementById("voiceStatus").textContent="Synthèse vocale non disponible.";return}
+  frenchVoices=speechSynthesis.getVoices().filter(v=>v.lang&&v.lang.toLowerCase().startsWith("fr"));
+  const sel=document.getElementById("voiceSelect");
+  sel.innerHTML='<option value="">Automatique</option>'+frenchVoices.map(v=>`<option value="${escapeHTML(v.name)}">${escapeHTML(v.name)} — ${escapeHTML(v.lang)}</option>`).join("");
+  document.getElementById("voiceStatus").textContent=frenchVoices.length?`${frenchVoices.length} voix française(s) détectée(s).`:"Voix française automatique du navigateur.";
 }
-
-function selectedVoice(){
-
-  const name=
-    document
-    .getElementById(
-      "voiceSelect"
-    )
-    .value;
-
-  if(name){
-
-    return frenchVoices.find(
-      voice=>voice.name===name
-    )||null;
-
-  }
-
-  return(
-    frenchVoices.find(
-      voice=>
-        voice.lang
-        .toLowerCase()==="fr-fr"
-    )
-    ||
-    frenchVoices[0]
-    ||
-    null
-  );
+function chosenVoice(){
+  const n=document.getElementById("voiceSelect").value;
+  return frenchVoices.find(v=>v.name===n)||frenchVoices.find(v=>v.lang.toLowerCase()==="fr-fr")||frenchVoices[0]||null;
 }
-
-function speakCurrentSlide(autoAdvance=false){
-
-  if(
-    !("speechSynthesis" in window)
-  ){
-    scheduleVideoAdvance();
-    return;
-  }
-
+function speakCurrent(autoAdvance=false){
+  if(!("speechSynthesis" in window)){if(autoAdvance)scheduleSlide();return}
   speechSynthesis.cancel();
-
-  const slide=
-    videoSlides[videoIndex];
-
-  const utterance=
-    new SpeechSynthesisUtterance(
-      slide.title+". "+slide.narration
-    );
-
-  currentUtterance=
-    utterance;
-
-  utterance.lang=
-    "fr-FR";
-
-  utterance.rate=
-    Number(
-      document
-      .getElementById(
-        "speechRate"
-      )
-      .value
-    )||.9;
-
-  const voice=
-    selectedVoice();
-
-  if(voice){
-    utterance.voice=voice;
-  }
-
-  utterance.onend=()=>{
-
-    if(
-      autoAdvance &&
-      videoPlaying &&
-      narrationEnabled
-    ){
-      advanceVideoAfterSpeech();
-    }
-
-  };
-
-  speechSynthesis.speak(
-    utterance
-  );
+  const s=videoSlides[videoIndex],u=new SpeechSynthesisUtterance(s[1]+". "+s[4]);
+  u.lang="fr-FR";u.rate=Number(document.getElementById("speechRate").value)||.9;
+  const v=chosenVoice();if(v)u.voice=v;
+  u.onend=()=>{if(autoAdvance&&videoPlaying&&narrationEnabled)advanceVideo()};
+  speechSynthesis.speak(u);
 }
-
-function advanceVideoAfterSpeech(){
-
-  if(
-    videoIndex<
-    videoSlides.length-1
-  ){
-
-    videoIndex++;
-    renderVideo();
-
-  }else{
-
-    stopVideoPlayback();
-
-  }
+function advanceVideo(){
+  if(videoIndex<videoSlides.length-1){videoIndex++;renderVideo();speakCurrent(true)}else stopVideo();
 }
-
-function scheduleVideoAdvance(){
-
-  clearTimeout(
-    slideTimer
-  );
-
-  if(
-    !videoPlaying ||
-    narrationEnabled
-  ){
-    return;
-  }
-
-  slideTimer=
-    setTimeout(
-      ()=>{
-
-        if(
-          videoIndex<
-          videoSlides.length-1
-        ){
-
-          videoIndex++;
-          renderVideo();
-          scheduleVideoAdvance();
-
-        }else{
-
-          stopVideoPlayback();
-
-        }
-
-      },
-      9000
-    );
+function scheduleSlide(){
+  clearTimeout(slideTimer);
+  if(!videoPlaying||narrationEnabled)return;
+  slideTimer=setTimeout(()=>{
+    if(videoIndex<videoSlides.length-1){videoIndex++;renderVideo();scheduleSlide()}else stopVideo();
+  },9000);
 }
-
 function toggleVideo(){
-
-  videoPlaying=
-    !videoPlaying;
-
-  document
-  .getElementById(
-    "videoPlayButton"
-  )
-  .textContent=
-    videoPlaying
-      ?"⏸ Pause"
-      :"▶ Lecture";
-
-  clearTimeout(
-    slideTimer
-  );
-
-  if(videoPlaying){
-
-    if(narrationEnabled){
-
-      speakCurrentSlide(true);
-
-    }else{
-
-      scheduleVideoAdvance();
-
-    }
-
-  }else{
-
-    if(
-      "speechSynthesis" in window
-    ){
-      speechSynthesis.cancel();
-    }
-
-  }
+  videoPlaying=!videoPlaying;
+  document.getElementById("videoPlayButton").textContent=videoPlaying?"⏸ Pause":"▶ Lecture";
+  clearTimeout(slideTimer);
+  if(videoPlaying){narrationEnabled?speakCurrent(true):scheduleSlide()}else if("speechSynthesis" in window)speechSynthesis.cancel();
 }
-
-function stopVideoPlayback(){
-
-  videoPlaying=false;
-
-  clearTimeout(
-    slideTimer
-  );
-
-  if(
-    "speechSynthesis" in window
-  ){
-    speechSynthesis.cancel();
-  }
-
-  document
-  .getElementById(
-    "videoPlayButton"
-  )
-  .textContent=
-    "▶ Lecture";
+function stopVideo(){
+  videoPlaying=false;clearTimeout(slideTimer);
+  if("speechSynthesis" in window)speechSynthesis.cancel();
+  document.getElementById("videoPlayButton").textContent="▶ Lecture";
 }
-
 function toggleNarration(){
-
-  narrationEnabled=
-    !narrationEnabled;
-
-  document
-  .getElementById(
-    "voiceButton"
-  )
-  .textContent=
-    narrationEnabled
-      ?"🔊 Désactiver la voix"
-      :"🔇 Activer la voix";
-
-  clearTimeout(
-    slideTimer
-  );
-
-  if(narrationEnabled){
-
-    if(videoPlaying){
-      speakCurrentSlide(true);
-    }else{
-      speakCurrentSlide(false);
-    }
-
-  }else{
-
-    if(
-      "speechSynthesis" in window
-    ){
-      speechSynthesis.cancel();
-    }
-
-    if(videoPlaying){
-      scheduleVideoAdvance();
-    }
-  }
+  narrationEnabled=!narrationEnabled;
+  document.getElementById("voiceButton").textContent=narrationEnabled?"🔊 Désactiver la voix":"🔇 Activer la voix";
+  clearTimeout(slideTimer);
+  if(narrationEnabled){videoPlaying?speakCurrent(true):speakCurrent(false)}
+  else{if("speechSynthesis" in window)speechSynthesis.cancel();if(videoPlaying)scheduleSlide()}
 }
+function repeatNarration(){speakCurrent(false)}
+function videoNext(){if(videoIndex<videoSlides.length-1)videoIndex++;renderVideo();if(videoPlaying){narrationEnabled?speakCurrent(true):scheduleSlide()}}
+function videoPrevious(){if(videoIndex>0)videoIndex--;renderVideo();if(videoPlaying){narrationEnabled?speakCurrent(true):scheduleSlide()}}
+function jumpVideo(i){videoIndex=Math.max(0,Math.min(videoSlides.length-1,i));renderVideo();if(videoPlaying){narrationEnabled?speakCurrent(true):scheduleSlide()}}
 
-function repeatNarration(){
-  speakCurrentSlide(false);
+function selectSeries(n,b){
+  currentSeries=n;
+  document.querySelectorAll(".series-button").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active");generateExercise();
 }
-
-function videoNext(){
-
-  clearTimeout(
-    slideTimer
-  );
-
-  if(
-    "speechSynthesis" in window
-  ){
-    speechSynthesis.cancel();
-  }
-
-  videoIndex=
-    Math.min(
-      videoSlides.length-1,
-      videoIndex+1
-    );
-
-  renderVideo();
-
-  if(
-    videoPlaying &&
-    !narrationEnabled
-  ){
-    scheduleVideoAdvance();
-  }
-}
-
-function videoPrevious(){
-
-  clearTimeout(
-    slideTimer
-  );
-
-  if(
-    "speechSynthesis" in window
-  ){
-    speechSynthesis.cancel();
-  }
-
-  videoIndex=
-    Math.max(
-      0,
-      videoIndex-1
-    );
-
-  renderVideo();
-
-  if(
-    videoPlaying &&
-    !narrationEnabled
-  ){
-    scheduleVideoAdvance();
-  }
-}
-
-function jumpVideo(index){
-
-  clearTimeout(
-    slideTimer
-  );
-
-  if(
-    "speechSynthesis" in window
-  ){
-    speechSynthesis.cancel();
-  }
-
-  videoIndex=
-    Math.max(
-      0,
-      Math.min(
-        videoSlides.length-1,
-        index
-      )
-    );
-
-  renderVideo();
-
-  if(
-    videoPlaying &&
-    !narrationEnabled
-  ){
-    scheduleVideoAdvance();
-  }
-}
-
-/* =========================================================
-   EXERCICES
-   ========================================================= */
-
-function selectSeries(
-  series,
-  button
-){
-
-  currentSeries=
-    series;
-
-  document
-  .querySelectorAll(
-    ".series-button"
-  )
-  .forEach(item=>{
-    item.classList.remove(
-      "active"
-    );
-  });
-
-  button.classList.add(
-    "active"
-  );
-
+function randomSeries(){
+  currentSeries=randInt(1,6);
+  document.querySelectorAll(".series-button").forEach((x,i)=>x.classList.toggle("active",i===currentSeries-1));
   generateExercise();
+}
+
+function makeSeries1(d){
+  const mode=randInt(1,4);
+  if(mode===1){
+    const r1=randInt(-6,4);let r2=randInt(-5,6);while(r2===r1)r2=randInt(-5,6);
+    const b=-(r1+r2),c=r1*r2;
+    return{skill:"Resolution",title:"Équation factorisable",kind:"set",answer:[r1,r2],
+      question:`Résous : ${polynomialText(1,b,c)}=0`,
+      hint1:"Cherche deux nombres dont la somme vaut −b et le produit c.",
+      hint2:`La somme recherchée vaut ${-b} et le produit ${c}.`,
+      correction:`${polynomialText(1,b,c)}=(${factorFromRoot(r1)})(${factorFromRoot(r2)}). Donc x=${r1} ou x=${r2}.`};
+  }
+  if(mode===2){
+    const r=randInt(-5,5),b=-2*r,c=r*r;
+    return{skill:"Resolution",title:"Racine double",kind:"set",answer:[r],
+      question:`Résous : ${polynomialText(1,b,c)}=0`,
+      hint1:"Cherche un carré parfait.",hint2:"Utilise une identité remarquable.",
+      correction:`${polynomialText(1,b,c)}=(${factorFromRoot(r)})². Donc x=${r}.`};
+  }
+  const a=d===1?1:pick([1,2,3,-1,-2]),r1=randInt(-4,3);let r2=randInt(r1+1,5);
+  const b=-a*(r1+r2),c=a*r1*r2;
+  return{skill:"Resolution",title:"Équation générale",kind:"set",answer:[r1,r2],
+    question:`Résous : ${polynomialText(a,b,c)}=0`,
+    hint1:"Calcule Δ=b²−4ac.",hint2:`a=${a}, b=${b}, c=${c}.`,
+    correction:deltaCorrection(a,b,c)};
+}
+
+function makeSeries2(d){
+  const mode=randInt(1,4);
+  if(mode===1){
+    const k=randInt(2,8);
+    return{skill:"Factorisation",title:"Différence de carrés",kind:"text",
+      question:`Factorise : x²−${k*k}`,answers:[`(x-${k})(x+${k})`,`(x+${k})(x-${k})`],
+      hint1:"Utilise x²−a²=(x−a)(x+a).",hint2:`${k*k}=${k}².`,
+      correction:`x²−${k*k}=(x−${k})(x+${k}).`};
+  }
+  if(mode===2){
+    const k=randInt(2,8);
+    return{skill:"Factorisation",title:"Facteur commun",kind:"text",
+      question:`Factorise : x²+${k}x`,answers:[`x(x+${k})`],
+      hint1:"Les deux termes contiennent x.",hint2:"Mets x en facteur.",
+      correction:`x²+${k}x=x(x+${k}).`};
+  }
+  const r1=randInt(-5,2),r2=randInt(r1+1,6),b=-(r1+r2),c=r1*r2;
+  return{skill:"Factorisation",title:"Trinôme",kind:"text",
+    question:`Factorise : ${polynomialText(1,b,c)}`,
+    answers:[`(${factorFromRoot(r1)})(${factorFromRoot(r2)})`,`(${factorFromRoot(r2)})(${factorFromRoot(r1)})`],
+    hint1:`Cherche deux nombres de somme ${-b}.`,hint2:`Leur produit vaut ${c}.`,
+    correction:`${polynomialText(1,b,c)}=(${factorFromRoot(r1)})(${factorFromRoot(r2)}).`};
+}
+
+function makeSeries3(){
+  const list=[
+    [1,-5,6],[1,5,6],[1,-1,-6],[1,4,8],[1,-4,4],[1,0,-9]
+  ];
+  const [a,b,c]=pick(list),d=discriminant(a,b,c),rs=roots(a,b,c);
+  let ans;
+  if(d<0)ans="aucune racine réelle";
+  else if(rs.length===1)ans=rs[0]>0?"une racine positive double":rs[0]<0?"une racine négative double":"une racine nulle";
+  else if(rs[0]*rs[1]<0)ans="deux racines de signes opposés";
+  else if(rs[0]>0)ans="deux racines positives";
+  else ans="deux racines négatives";
+  return{skill:"Racines",title:"Nombre et signe des racines",kind:"choice",
+    question:`Sans calculer explicitement les racines, étudie ${polynomialText(a,b,c)}=0.`,
+    choices:["aucune racine réelle","une racine positive double","une racine négative double","une racine nulle","deux racines positives","deux racines négatives","deux racines de signes opposés"],
+    answer:ans,hint1:"Commence par le signe de Δ.",hint2:"Ensuite utilise c/a et −b/a.",correction:signCorrection(a,b,c)};
+}
+
+function makeSeries4(){
+  const mode=randInt(1,5);
+  if(mode===1)return{skill:"Parametres",title:"Racine nulle",kind:"number",answer:0,
+    question:"Détermine c pour que x²+(c−3)x+c=0 admette une racine nulle.",
+    hint1:"Remplace x par 0.",hint2:"Le terme constant doit être nul.",correction:"Pour x=0, il reste c=0. Donc c=0."};
+  if(mode===2)return{skill:"Parametres",title:"Racines inverses",kind:"number",answer:1,
+    question:"Détermine c pour que x²+(c−3)x+c=0 ait deux racines inverses.",
+    hint1:"Deux racines inverses ont un produit égal à 1.",hint2:"Ici x₁x₂=c.",
+    correction:"x₁x₂=c. Pour des racines inverses, x₁x₂=1. Donc c=1."};
+  if(mode===3)return{skill:"Parametres",title:"Racines opposées",kind:"number",answer:.5,
+    question:"Détermine m pour que x²+(2m−1)x+m²=0 ait deux racines opposées.",
+    hint1:"Deux racines opposées ont une somme nulle.",hint2:"x₁+x₂=−(2m−1).",
+    correction:"−(2m−1)=0, donc m=1/2."};
+  if(mode===4)return{skill:"Parametres",title:"Signes opposés",kind:"choice",
+    question:"Pour x²+(c−3)x+c=0, quelle condition garantit des racines de signes opposés ?",
+    choices:["c<0","c>0","c=1"],answer:"c<0",
+    hint1:"Le produit doit être négatif.",hint2:"x₁x₂=c.",
+    correction:"Il faut x₁x₂=c<0. Donc c<0."};
+  return{skill:"Parametres",title:"Deux racines positives",kind:"choice",
+    question:"Quelles conditions garantissent deux racines réelles strictement positives ?",
+    choices:["Δ>0, produit>0, somme>0","Δ<0 et produit>0","Δ>0 et produit<0"],
+    answer:"Δ>0, produit>0, somme>0",
+    hint1:"Il faut d'abord deux racines réelles distinctes.",hint2:"Puis même signe et somme positive.",
+    correction:"Il faut Δ>0, x₁x₂>0 et x₁+x₂>0."};
+}
+
+function makeSeries5(){
+  const mode=randInt(1,2);
+  if(mode===1){
+    const x=randInt(-4,5);let y=randInt(-4,5);while(y===x)y=randInt(-4,5);
+    const s=x+y,p=x*y;
+    return{skill:"Systemes",title:"Système somme-produit",kind:"set",answer:[x,y],
+      question:`On sait que x+y=${s} et xy=${p}. Donne les deux valeurs prises par x et y.`,
+      hint1:"Considère x et y comme les racines d'une équation en t.",hint2:`Utilise t²−(${s})t+(${p})=0.`,
+      correction:`x et y sont les racines de t²−${s}t+${p}=0. Les valeurs sont ${x} et ${y}.`};
+  }
+  return{skill:"Systemes",title:"Système avec carrés",kind:"number",answer:-2,
+    question:"On sait que x+y=1 et x²+y²=5. Calcule xy.",
+    hint1:"Utilise (x+y)²=x²+2xy+y².",hint2:"1=5+2xy.",
+    correction:"1=5+2xy, donc 2xy=−4 et xy=−2."};
+}
+
+function makeSeries6(){
+  const mode=randInt(1,4);
+  if(mode===1)return{skill:"Parametres",title:"Discriminant en m",kind:"choice",
+    question:"Pour x²+2x+m=0, Δ vaut…",choices:["4−4m","4+4m","m²−4"],answer:"4−4m",
+    hint1:"a=1, b=2, c=m.",hint2:"Δ=b²−4ac.",correction:"Δ=4−4m."};
+  if(mode===2)return{skill:"Parametres",title:"Deux racines distinctes",kind:"choice",
+    question:"Pour x²+2x+m=0, quand existe-t-il deux racines réelles distinctes ?",
+    choices:["m<1","m=1","m>1"],answer:"m<1",
+    hint1:"Il faut Δ>0.",hint2:"4−4m>0.",correction:"4−4m>0 ⇔ m<1."};
+  if(mode===3)return{skill:"Parametres",title:"Cas dégénéré",kind:"number",answer:1,
+    question:"Pour quelle valeur de m, (m−1)x²+(m+1)x+2=0 cesse-t-elle d'être du second degré ?",
+    hint1:"Annule le coefficient de x².",hint2:"m−1=0.",correction:"m=1."};
+  return{skill:"Parametres",title:"Identité remarquable",kind:"choice",
+    question:"Pour x²−2mx+m²=0, quelle affirmation est vraie ?",
+    choices:["Il existe toujours une racine double x=m.","Il existe toujours deux racines distinctes.","Aucune racine réelle."],
+    answer:"Il existe toujours une racine double x=m.",
+    hint1:"Reconnais un carré parfait.",hint2:"(x−m)².",
+    correction:"x²−2mx+m²=(x−m)². Donc x=m est toujours une racine double."};
 }
 
 function generateExercise(){
-
-  const difficulty=
-    Number(
-      document
-      .getElementById(
-        "difficulty"
-      )
-      .value
-    );
-
-  if(currentSeries===1){
-    currentExercise=
-      makeSeries1(difficulty);
-  }
-
-  if(currentSeries===2){
-    currentExercise=
-      makeSeries2(difficulty);
-  }
-
-  if(currentSeries===3){
-    currentExercise=
-      makeSeries3(difficulty);
-  }
-
-  if(currentSeries===4){
-    currentExercise=
-      makeSeries4(difficulty);
-  }
-
-  if(currentSeries===5){
-    currentExercise=
-      makeSeries5(difficulty);
-  }
-
-  if(currentSeries===6){
-    currentExercise=
-      makeSeries6(difficulty);
-  }
-
-  exerciseAttempts=0;
-
-  renderExercise();
-  renderSeriesProgress();
+  const d=Number(document.getElementById("difficulty").value);
+  const makers=[null,makeSeries1,makeSeries2,makeSeries3,makeSeries4,makeSeries5,makeSeries6];
+  currentExercise=makers[currentSeries](d);
+  exerciseAttempts=0;exerciseValidated=false;exerciseCorrectionShown=false;
+  renderExercise();renderSeriesProgress();
 }
 
-/* ----- SERIE 1 ----- */
-
-function makeSeries1(difficulty){
-
-  const mode=
-    randInt(1,5);
-
-  if(
-    difficulty===1 &&
-    mode<=2
-  ){
-
-    const r1=
-      randInt(-6,5);
-
-    let r2=
-      randInt(-6,5);
-
-    while(r2===r1){
-      r2=randInt(-6,5);
-    }
-
-    const b=
-      -(r1+r2);
-
-    const c=
-      r1*r2;
-
-    return{
-      skill:"Resolution",
-      title:"Résoudre une équation du second degré",
-      level:"Palier 1",
-      kind:"set",
-      question:
-        `Résous : ${polynomialText(1,b,c)}=0`,
-      answer:[r1,r2],
-      hint1:
-        "Cherche si le trinôme se factorise simplement.",
-      hint2:
-        `Cherche deux nombres dont la somme vaut ${-b} et le produit ${c}.`,
-      correction:
-        `On factorise : (${factorFromRoot(r1)})(${factorFromRoot(r2)})=0. Par le produit nul, x=${r1} ou x=${r2}.`
-    };
-
-  }
-
-  if(mode===3){
-
-    const r=
-      randInt(-5,5);
-
-    const b=
-      -2*r;
-
-    const c=
-      r*r;
-
-    return{
-      skill:"Resolution",
-      title:"Racine double",
-      level:
-        difficulty===1
-        ?"Palier 1"
-        :"Palier 2",
-      kind:"set",
-      question:
-        `Résous : ${polynomialText(1,b,c)}=0`,
-      answer:[r],
-      hint1:
-        "Reconnais-tu un carré parfait ?",
-      hint2:
-        `Le trinôme correspond à (x${r>=0?"−":"+"}${Math.abs(r)})².`,
-      correction:
-        `Le trinôme est un carré parfait : (${factorFromRoot(r)})²=0. Donc x=${r}.`
-    };
-
-  }
-
-  if(mode===4){
-
-    const a=
-      pick([2,3]);
-
-    const r1=
-      randInt(-4,4);
-
-    let r2=
-      randInt(-4,4);
-
-    while(r2===r1){
-      r2=randInt(-4,4);
-    }
-
-    const b=
-      -a*(r1+r2);
-
-    const c=
-      a*r1*r2;
-
-    return{
-      skill:"Resolution",
-      title:"Équation avec a≠1",
-      level:
-        difficulty===3
-        ?"Palier 3"
-        :"Palier 2",
-      kind:"set",
-      question:
-        `Résous : ${polynomialText(a,b,c)}=0`,
-      answer:[r1,r2],
-      hint1:
-        "Tu peux utiliser le discriminant.",
-      hint2:
-        `a=${a}, b=${b}, c=${c}.`,
-      correction:
-        buildDeltaCorrection(
-          a,b,c
-        )
-    };
-
-  }
-
-  const a=
-    pick([1,2,3]);
-
-  const b=
-    randInt(-8,8);
-
-  const c=
-    randInt(-8,8);
-
-  const delta=
-    discriminant(
-      a,b,c
-    );
-
-  const solutionRoots=
-    roots(a,b,c);
-
-  return{
-    skill:"Resolution",
-    title:"Équation générale",
-    level:
-      difficulty===3
-      ?"Palier 3"
-      :"Palier 2",
-    kind:"set",
-    question:
-      `Résous dans ℝ : ${polynomialText(a,b,c)}=0`,
-    answer:
-      solutionRoots,
-    hint1:
-      "Calcule Δ=b²−4ac.",
-    hint2:
-      `Ici Δ=${delta}.`,
-    correction:
-      buildDeltaCorrection(
-        a,b,c
-      )
-  };
+function deltaCorrection(a,b,c){
+  const d=discriminant(a,b,c),rs=roots(a,b,c);
+  if(d<0)return `Δ=(${b})²−4×${a}×${c}=${d}<0. Aucune solution réelle.`;
+  if(Math.abs(d)<1e-9)return `Δ=${d}. Racine double : x=${formatNumber(rs[0])}.`;
+  return `Δ=(${b})²−4×${a}×${c}=${d}>0. Les solutions sont ${formatNumber(rs[0])} et ${formatNumber(rs[1])}.`;
 }
-
-/* ----- SERIE 2 ----- */
-
-function makeSeries2(difficulty){
-
-  const mode=
-    randInt(1,4);
-
-  if(mode===1){
-
-    const k=
-      randInt(2,8);
-
-    return{
-      skill:"Factorisation",
-      title:"Différence de carrés",
-      level:"Palier 1",
-      kind:"text",
-      question:
-        `Factorise : x²−${k*k}`,
-      answers:[
-        `(x-${k})(x+${k})`,
-        `(x+${k})(x-${k})`
-      ],
-      hint1:
-        "Utilise a²−b²=(a−b)(a+b).",
-      hint2:
-        `${k*k}=${k}².`,
-      correction:
-        `x²−${k*k}=x²−${k}²=(x−${k})(x+${k}).`
-    };
-
-  }
-
-  if(mode===2){
-
-    const k=
-      randInt(2,8);
-
-    return{
-      skill:"Factorisation",
-      title:"Facteur commun",
-      level:"Palier 1",
-      kind:"text",
-      question:
-        `Factorise : x²${k>=0?"+":"−"}${Math.abs(k)}x`,
-      answers:[
-        `x(x+${k})`
-      ],
-      hint1:
-        "Les deux termes contiennent x.",
-      hint2:
-        "Mets x en facteur.",
-      correction:
-        `x²+${k}x=x(x+${k}).`
-    };
-
-  }
-
-  if(mode===3){
-
-    const r=
-      randInt(-6,6);
-
-    const b=
-      -2*r;
-
-    const c=
-      r*r;
-
-    return{
-      skill:"Factorisation",
-      title:"Carré parfait",
-      level:"Palier 2",
-      kind:"text",
-      question:
-        `Factorise : ${polynomialText(1,b,c)}`,
-      answers:[
-        `(${factorFromRoot(r)})^2`,
-        `(${factorFromRoot(r)})²`
-      ],
-      hint1:
-        "Reconnais a²−2ab+b² ou a²+2ab+b².",
-      hint2:
-        `La racine du terme constant vaut ${Math.abs(r)}.`,
-      correction:
-        `${polynomialText(1,b,c)}=(${factorFromRoot(r)})².`
-    };
-
-  }
-
-  let r1=
-    randInt(-6,4);
-
-  let r2=
-    randInt(r1+1,7);
-
-  const b=
-    -(r1+r2);
-
-  const c=
-    r1*r2;
-
-  return{
-    skill:"Factorisation",
-    title:"Trinôme",
-    level:
-      difficulty===3
-      ?"Palier 3"
-      :"Palier 2",
-    kind:"text",
-    question:
-      `Factorise : ${polynomialText(1,b,c)}`,
-    answers:[
-      `(${factorFromRoot(r1)})(${factorFromRoot(r2)})`,
-      `(${factorFromRoot(r2)})(${factorFromRoot(r1)})`
-    ],
-    hint1:
-      `Cherche deux nombres de somme ${-b}.`,
-    hint2:
-      `Leur produit doit être ${c}.`,
-    correction:
-      `${polynomialText(1,b,c)}=(${factorFromRoot(r1)})(${factorFromRoot(r2)}).`
-  };
-}
-
-/* ----- SERIE 3 ----- */
-
-function makeSeries3(difficulty){
-
-  const patterns=[
-    {
-      a:1,
-      b:-5,
-      c:6
-    },
-    {
-      a:1,
-      b:5,
-      c:6
-    },
-    {
-      a:1,
-      b:-1,
-      c:-6
-    },
-    {
-      a:1,
-      b:4,
-      c:8
-    },
-    {
-      a:1,
-      b:-4,
-      c:4
-    }
-  ];
-
-  const p=
-    pick(patterns);
-
-  const delta=
-    discriminant(
-      p.a,p.b,p.c
-    );
-
-  const rs=
-    roots(
-      p.a,p.b,p.c
-    );
-
-  let answer="";
-
-  if(delta<0){
-
-    answer=
-      "aucune racine réelle";
-
-  }else if(rs.length===1){
-
-    if(rs[0]===0){
-      answer=
-        "une racine nulle";
-    }else if(rs[0]>0){
-      answer=
-        "une racine positive double";
-    }else{
-      answer=
-        "une racine négative double";
-    }
-
-  }else{
-
-    if(rs[0]*rs[1]<0){
-
-      answer=
-        "deux racines de signes opposés";
-
-    }else if(
-      rs[0]>0 &&
-      rs[1]>0
-    ){
-
-      answer=
-        "deux racines positives";
-
-    }else{
-
-      answer=
-        "deux racines négatives";
-
-    }
-
-  }
-
-  return{
-    skill:"Racines",
-    title:"Nombre et signe des racines",
-    level:
-      difficulty===1
-      ?"Palier 1"
-      :difficulty===2
-        ?"Palier 2"
-        :"Palier 3",
-    kind:"choice",
-    question:
-      `Sans calculer explicitement les racines, étudie ${polynomialText(p.a,p.b,p.c)}=0.`,
-    choices:[
-      "aucune racine réelle",
-      "une racine positive double",
-      "une racine négative double",
-      "une racine nulle",
-      "deux racines positives",
-      "deux racines négatives",
-      "deux racines de signes opposés"
-    ],
-    answer,
-    hint1:
-      "Commence par le signe de Δ.",
-    hint2:
-      "Si deux racines existent, utilise leur produit c/a et leur somme −b/a.",
-    correction:
-      buildSignCorrection(
-        p.a,p.b,p.c
-      )
-  };
-}
-
-/* ----- SERIE 4 : PARAMETRE ----- */
-
-function makeSeries4(difficulty){
-
-  const mode=
-    randInt(1,5);
-
-  if(mode===1){
-
-    return{
-      skill:"Parametres",
-      title:"Une racine nulle",
-      level:"Palier 1",
-      kind:"number",
-      question:
-        "Détermine c pour que x²+(c−3)x+c=0 admette au moins une racine nulle.",
-      answer:0,
-      hint1:
-        "Si x=0 est une racine, remplace x par 0.",
-      hint2:
-        "Le terme constant doit être nul.",
-      correction:
-        "Pour x=0, l'équation devient c=0. Donc c=0."
-    };
-
-  }
-
-  if(mode===2){
-
-    return{
-      skill:"Parametres",
-      title:"Racines inverses",
-      level:"Palier 2",
-      kind:"number",
-      question:
-        "Détermine c pour que x²+(c−3)x+c=0 ait deux racines inverses.",
-      answer:1,
-      hint1:
-        "Deux racines inverses ont un produit égal à 1.",
-      hint2:
-        "Le produit des racines vaut c/a=c.",
-      correction:
-        "x₁x₂=c. Pour des racines inverses, x₁x₂=1. Donc c=1."
-    };
-
-  }
-
-  if(mode===3){
-
-    return{
-      skill:"Parametres",
-      title:"Racines opposées",
-      level:"Palier 2",
-      kind:"number",
-      question:
-        "Détermine m pour que x²+(2m−1)x+m²=0 ait deux racines opposées.",
-      answer:.5,
-      hint1:
-        "Deux racines opposées ont une somme nulle.",
-      hint2:
-        "La somme vaut −(2m−1).",
-      correction:
-        "Deux racines opposées vérifient x₁+x₂=0. Donc −(2m−1)=0, soit 2m−1=0, donc m=1/2."
-    };
-
-  }
-
-  if(mode===4){
-
-    return{
-      skill:"Parametres",
-      title:"Racines de signes opposés",
-      level:"Palier 2",
-      kind:"choice",
-      question:
-        "Pour x²+(c−3)x+c=0, quelle condition sur c garantit des racines de signes opposés ?",
-      choices:[
-        "c<0",
-        "c>0",
-        "c=1"
-      ],
-      answer:"c<0",
-      hint1:
-        "Deux racines de signes opposés ont un produit négatif.",
-      hint2:
-        "Ici x₁x₂=c.",
-      correction:
-        "Le produit des racines vaut c. Pour qu'il soit négatif, il faut c<0."
-    };
-
-  }
-
-  return{
-    skill:"Parametres",
-    title:"Deux racines strictement positives",
-    level:"Palier 3",
-    kind:"choice",
-    question:
-      "Pour une équation du second degré, quelles conditions permettent d'assurer deux racines réelles strictement positives ?",
-    choices:[
-      "Δ>0, produit>0 et somme>0",
-      "Δ<0 et produit>0",
-      "Δ>0 et produit<0"
-    ],
-    answer:
-      "Δ>0, produit>0 et somme>0",
-    hint1:
-      "Il faut d'abord deux racines réelles distinctes.",
-    hint2:
-      "Deux nombres positifs ont une somme et un produit positifs.",
-    correction:
-      "Il faut Δ>0 pour deux racines réelles distinctes, x₁x₂>0 pour qu'elles aient le même signe, puis x₁+x₂>0 pour qu'elles soient positives."
-  };
-}
-
-/* ----- SERIE 5 : SYSTEMES ----- */
-
-function makeSeries5(difficulty){
-
-  const mode=
-    randInt(1,3);
-
-  if(mode===1){
-
-    const x=
-      randInt(-4,5);
-
-    let y=
-      randInt(-4,5);
-
-    while(y===x){
-      y=randInt(-4,5);
-    }
-
-    const sum=
-      x+y;
-
-    const prod=
-      x*y;
-
-    return{
-      skill:"Systemes",
-      title:"Système somme-produit",
-      level:
-        difficulty===1
-        ?"Palier 1"
-        :"Palier 2",
-      kind:"set",
-      question:
-        `Résous le système x+y=${sum} et xy=${prod}. Écris les deux valeurs possibles pour x et y sous forme d'un ensemble de nombres.`,
-      answer:[x,y],
-      hint1:
-        "x et y peuvent être considérés comme les racines d'une équation du second degré.",
-      hint2:
-        `Construis t²−(${sum})t+(${prod})=0.`,
-      correction:
-        `x et y sont les racines de t²−${sum}t+${prod}=0. Les deux valeurs sont ${x} et ${y}. Les couples sont donc (${x},${y}) et (${y},${x}).`
-    };
-
-  }
-
-  if(mode===2){
-
-    return{
-      skill:"Systemes",
-      title:"Système x+y et x²+y²",
-      level:"Palier 3",
-      kind:"number",
-      question:
-        "On sait que x+y=1 et x²+y²=5. Calcule xy.",
-      answer:-2,
-      hint1:
-        "Utilise (x+y)²=x²+2xy+y².",
-      hint2:
-        "1²=5+2xy.",
-      correction:
-        "1=5+2xy, donc 2xy=−4 et xy=−2."
-    };
-
-  }
-
-  return{
-    skill:"Systemes",
-    title:"Système somme-produit",
-    level:"Palier 2",
-    kind:"set",
-    question:
-      "Résous le système x+y=3 et xy=2. Donne les deux valeurs prises par x et y.",
-    answer:[1,2],
-    hint1:
-      "Construis l'équation t²−3t+2=0.",
-    hint2:
-      "Elle se factorise facilement.",
-    correction:
-      "t²−3t+2=(t−1)(t−2). Donc les valeurs sont 1 et 2. Les couples sont (1,2) et (2,1)."
-  };
-}
-
-/* ----- SERIE 6 : DISCUSSION PARAMETRE ----- */
-
-function makeSeries6(difficulty){
-
-  const mode=
-    randInt(1,4);
-
-  if(mode===1){
-
-    return{
-      skill:"Parametres",
-      title:"Discussion simple",
-      level:"Palier 2",
-      kind:"choice",
-      question:
-        "Pour x²+2x+m=0, le discriminant vaut…",
-      choices:[
-        "4−4m",
-        "4+4m",
-        "m²−4"
-      ],
-      answer:"4−4m",
-      hint1:
-        "a=1, b=2 et c=m.",
-      hint2:
-        "Δ=b²−4ac.",
-      correction:
-        "Δ=2²−4×1×m=4−4m."
-    };
-
-  }
-
-  if(mode===2){
-
-    return{
-      skill:"Parametres",
-      title:"Nombre de solutions selon m",
-      level:"Palier 2",
-      kind:"choice",
-      question:
-        "Pour x²+2x+m=0, quand existe-t-il deux racines réelles distinctes ?",
-      choices:[
-        "m<1",
-        "m=1",
-        "m>1"
-      ],
-      answer:"m<1",
-      hint1:
-        "Deux racines distinctes exigent Δ>0.",
-      hint2:
-        "Δ=4−4m.",
-      correction:
-        "4−4m>0 ⇔ 1−m>0 ⇔ m<1."
-    };
-
-  }
-
-  if(mode===3){
-
-    return{
-      skill:"Parametres",
-      title:"Cas dégénéré",
-      level:"Palier 3",
-      kind:"number",
-      question:
-        "Dans (m−1)x²+(m+1)x+2=0, pour quelle valeur de m l'équation cesse-t-elle d'être du second degré ?",
-      answer:1,
-      hint1:
-        "Le coefficient de x² doit s'annuler.",
-      hint2:
-        "Résous m−1=0.",
-      correction:
-        "L'équation cesse d'être du second degré lorsque m−1=0, donc m=1."
-    };
-
-  }
-
-  return{
-    skill:"Parametres",
-    title:"Discussion complète",
-    level:"Palier 3",
-    kind:"choice",
-    question:
-      "Pour x²−2mx+m²=0, quelle affirmation est vraie pour tout réel m ?",
-    choices:[
-      "Il existe toujours une racine double x=m.",
-      "Il existe toujours deux racines distinctes.",
-      "Il n'existe jamais de racine réelle."
-    ],
-    answer:
-      "Il existe toujours une racine double x=m.",
-    hint1:
-      "Reconnais-tu une identité remarquable ?",
-    hint2:
-      "x²−2mx+m²=(x−m)².",
-    correction:
-      "x²−2mx+m²=(x−m)². L'équation possède donc toujours la racine double x=m."
-  };
-}
-
-function factorFromRoot(root){
-
-  if(root>0){
-    return `x−${root}`;
-  }
-
-  if(root<0){
-    return `x+${Math.abs(root)}`;
-  }
-
-  return "x";
-}
-
-function buildDeltaCorrection(
-  a,b,c
-){
-
-  const delta=
-    discriminant(a,b,c);
-
-  const rs=
-    roots(a,b,c);
-
-  let text=
-    `a=${a}, b=${b}, c=${c}. Δ=(${b})²−4×${a}×${c}=${delta}. `;
-
-  if(delta<0){
-
-    text+=
-      "Comme Δ<0, il n'y a aucune solution réelle.";
-
-  }else if(
-    Math.abs(delta)<1e-9
-  ){
-
-    text+=
-      `Comme Δ=0, x=−b/(2a)=${formatNumber(rs[0])}.`;
-
-  }else{
-
-    text+=
-      `Comme Δ>0, les solutions sont x₁=${formatNumber(rs[0])} et x₂=${formatNumber(rs[1])}.`;
-
-  }
-
+function signCorrection(a,b,c){
+  const d=discriminant(a,b,c),rs=roots(a,b,c);
+  if(d<0)return `Δ=${d}<0 : aucune racine réelle.`;
+  if(rs.length===1)return `Δ=0 : racine double ${formatNumber(rs[0])}.`;
+  const p=c/a,s=-b/a;
+  let text=`Δ=${d}>0. Produit=${formatNumber(p)}, somme=${formatNumber(s)}. `;
+  if(p<0)text+="Produit négatif : signes opposés.";
+  else if(s>0)text+="Produit positif et somme positive : deux racines positives.";
+  else text+="Produit positif et somme négative : deux racines négatives.";
   return text;
 }
 
-function buildSignCorrection(
-  a,b,c
-){
-
-  const delta=
-    discriminant(a,b,c);
-
-  if(delta<0){
-
-    return(
-      `Δ=${delta}<0. Il n'existe aucune racine réelle.`
-    );
-
-  }
-
-  const rs=
-    roots(a,b,c);
-
-  const product=
-    c/a;
-
-  const sum=
-    -b/a;
-
-  if(rs.length===1){
-
-    return(
-      `Δ=0 : il existe une racine double. Sa valeur est ${formatNumber(rs[0])}.`
-    );
-
-  }
-
-  let signText="";
-
-  if(product<0){
-
-    signText=
-      "Le produit est négatif : les racines ont des signes opposés.";
-
-  }else if(
-    product>0 &&
-    sum>0
-  ){
-
-    signText=
-      "Le produit est positif et la somme positive : les deux racines sont positives.";
-
-  }else if(
-    product>0 &&
-    sum<0
-  ){
-
-    signText=
-      "Le produit est positif et la somme négative : les deux racines sont négatives.";
-
-  }
-
-  return(
-    `Δ=${delta}>0 : deux racines réelles. Leur produit vaut c/a=${formatNumber(product)} et leur somme −b/a=${formatNumber(sum)}. ${signText}`
-  );
-}
-
 function renderExercise(){
-
-  const ex=
-    currentExercise;
-
-  let answerField="";
-
-  if(ex.kind==="choice"){
-
-    answerField=`
-      <select id="exerciseAnswer">
-        <option value="">Choisir…</option>
-        ${ex.choices
-          .map(
-            choice=>
-              `<option value="${escapeHTML(choice)}">${escapeHTML(choice)}</option>`
-          )
-          .join("")}
-      </select>
-    `;
-
+  const e=currentExercise;
+  let field="";
+  if(e.kind==="choice"){
+    field=`<select id="exerciseAnswer"><option value="">Choisir…</option>${e.choices.map(c=>`<option value="${escapeHTML(c)}">${escapeHTML(c)}</option>`).join("")}</select>`;
   }else{
-
-    answerField=`
-      <input id="exerciseAnswer"
-      type="text"
-      placeholder="${
-        ex.kind==="set"
-        ?"Ex. -2 ; 4"
-        :ex.kind==="text"
-          ?"Écris la factorisation"
-          :"Ta réponse"
-      }">
-    `;
-
+    field=`<input id="exerciseAnswer" type="text" placeholder="${e.kind==="set"?"Ex. -2 ; 4":e.kind==="text"?"Écris la factorisation":"Ta réponse"}">`;
   }
-
-  document
-  .getElementById(
-    "exerciseArea"
-  )
-  .innerHTML=`
-
-    <div class="exercise-meta">
-
-      <span class="badge badge-blue">
-        Série ${currentSeries}
-      </span>
-
-      <span class="badge badge-purple">
-        ${ex.skill}
-      </span>
-
-      <span class="badge badge-orange">
-        ${ex.level}
-      </span>
-
-    </div>
-
-    <h3>
-      ${ex.title}
-    </h3>
-
-    <p>
-      ${ex.question}
-    </p>
-
-    <div class="answer-row">
-
-      <div>
-
-        <label for="exerciseAnswer">
-          Réponse
-        </label>
-
-        ${answerField}
-
-      </div>
-
-      <button class="btn btn-primary"
-      onclick="checkExercise()">
-        Vérifier
-      </button>
-
-    </div>
-
-    <div class="actions">
-
-      <button class="btn btn-warning"
-      onclick="showExerciseHint(1)">
-        Indice 1
-      </button>
-
-      <button class="btn btn-warning"
-      onclick="showExerciseHint(2)">
-        Indice 2
-      </button>
-
-      <button class="btn btn-secondary"
-      onclick="showExerciseCorrection()">
-        Correction détaillée
-      </button>
-
-    </div>
-
-    <div id="exerciseFeedback"
-    aria-live="polite"></div>
-  `;
-}
-
-function normalizeAlgebraText(value){
-
-  return String(value)
-  .toLowerCase()
-  .replace(/\s/g,"")
-  .replace(/−/g,"-")
-  .replace(/²/g,"^2");
+  document.getElementById("exerciseArea").innerHTML=`
+  <div class="exercise-meta">
+  <span class="badge badge-blue">Série ${currentSeries}</span>
+  <span class="badge badge-purple">${e.skill}</span>
+  <span class="badge badge-orange">${["","Accessible","Intermédiaire","Avancé"][Number(document.getElementById("difficulty").value)]}</span>
+  </div>
+  <h3>${e.title}</h3><p>${e.question}</p>
+  <div class="answer-row"><div><label for="exerciseAnswer">Réponse</label>${field}</div>
+  <button id="exerciseCheckBtn" class="btn btn-primary" onclick="checkExercise()">Vérifier</button></div>
+  <div class="actions">
+  <button class="btn btn-warning" onclick="exerciseHint(1)">Indice 1</button>
+  <button class="btn btn-warning" onclick="exerciseHint(2)">Indice 2</button>
+  <button class="btn btn-secondary" onclick="exerciseCorrection()">Correction détaillée</button>
+  </div>
+  <div id="exerciseFeedback" aria-live="polite"></div>`;
 }
 
 function checkExercise(){
-
+  if(exerciseValidated)return;
   exerciseAttempts++;
-
-  const value=
-    document
-    .getElementById(
-      "exerciseAnswer"
-    )
-    .value;
-
+  const v=document.getElementById("exerciseAnswer").value,e=currentExercise;
   let correct=false;
+  if(e.kind==="number")correct=numericCorrect(v,e.answer);
+  else if(e.kind==="set")correct=setCorrect(v,e.answer);
+  else if(e.kind==="choice")correct=v===e.answer;
+  else if(e.kind==="text")correct=e.answers.some(a=>normalizeText(a)===normalizeText(v));
 
-  if(
-    currentExercise.kind==="number"
-  ){
-
-    correct=
-      numericCorrect(
-        value,
-        currentExercise.answer
-      );
-
-  }else if(
-    currentExercise.kind==="set"
-  ){
-
-    correct=
-      setCorrect(
-        value,
-        currentExercise.answer
-      );
-
-  }else if(
-    currentExercise.kind==="choice"
-  ){
-
-    correct=
-      value===
-      currentExercise.answer;
-
-  }else if(
-    currentExercise.kind==="text"
-  ){
-
-    const normalized=
-      normalizeAlgebraText(value);
-
-    correct=
-      currentExercise.answers
-      .some(
-        answer=>
-          normalized===
-          normalizeAlgebraText(answer)
-      );
-
+  if(correct){
+    exerciseValidated=true;
+    document.getElementById("exerciseCheckBtn").disabled=true;
+    recordResult(e.skill,true,e.title,currentSeries);
+    document.getElementById("exerciseFeedback").innerHTML=`<div class="notice ok">✅ Correct. ${exerciseAttempts===1?"Réussite au premier essai.":"Bonne correction de ta démarche."}</div>`;
+  }else{
+    recordResult(e.skill,false,e.title,currentSeries);
+    document.getElementById("exerciseFeedback").innerHTML=`<div class="notice warn">Ce n'est pas encore correct. ${exerciseAttempts>=2?"Consulte la correction détaillée.":"Utilise un indice puis essaie encore."}</div>`;
+    if(exerciseAttempts>=2)exerciseCorrection();
   }
-
-  recordResult(
-    currentExercise.skill,
-    correct,
-    currentExercise.title,
-    currentSeries
-  );
-
-  document
-  .getElementById(
-    "exerciseFeedback"
-  )
-  .innerHTML=
-
-    correct
-    ?`
-      <div class="notice ok">
-        ✅ Correct.
-        ${
-          exerciseAttempts===1
-          ?" Réussite au premier essai."
-          :" Tu as bien corrigé ta démarche."
-        }
-      </div>
-    `
-    :`
-      <div class="notice warn">
-        Ce n'est pas encore correct.
-        ${
-          exerciseAttempts>=2
-          ?" La correction détaillée est affichée ci-dessous."
-          :" Utilise un indice et essaie encore."
-        }
-      </div>
-    `;
-
-  if(
-    !correct &&
-    exerciseAttempts>=2
-  ){
-
-    showExerciseCorrection();
-
-  }
-
   renderSeriesProgress();
 }
-
-function showExerciseHint(level){
-
-  document
-  .getElementById(
-    "exerciseFeedback"
-  )
-  .innerHTML=`
-
-    <div class="notice warn">
-
-      <strong>Indice ${level} :</strong>
-
-      ${
-        level===1
-        ?currentExercise.hint1
-        :currentExercise.hint2
-      }
-
-    </div>
-  `;
+function exerciseHint(n){
+  document.getElementById("exerciseFeedback").innerHTML=`<div class="notice warn"><strong>Indice ${n} :</strong> ${n===1?currentExercise.hint1:currentExercise.hint2}</div>`;
 }
-
-function showExerciseCorrection(){
-
-  document
-  .getElementById(
-    "exerciseFeedback"
-  )
-  .innerHTML+=`
-
-    <div class="notice ok">
-
-      <strong>Correction :</strong><br>
-
-      ${currentExercise.correction}
-
-    </div>
-  `;
+function exerciseCorrection(){
+  if(exerciseCorrectionShown)return;
+  exerciseCorrectionShown=true;
+  document.getElementById("exerciseFeedback").innerHTML+=`<div class="notice ok"><strong>Correction :</strong><br>${currentExercise.correction}</div>`;
 }
-
 function renderSeriesProgress(){
-
-  const success=
-    state.seriesSuccess[
-      currentSeries
-    ]||0;
-
-  const target=5;
-
-  const pct=
-    Math.min(
-      100,
-      success/target*100
-    );
-
-  document
-  .getElementById(
-    "seriesProgress"
-  )
-  .innerHTML=`
-
-    <div class="small">
-      Réussites dans cette série :
-      ${success}
-      ${
-        success>=target
-        ?" — série bien travaillée ✅"
-        :" — objectif conseillé : 5 réussites"
-      }
-    </div>
-
-    <div class="level-progress">
-
-      <div style="width:${pct}%"></div>
-
-    </div>
-  `;
+  const s=state.seriesSuccess[currentSeries]||0,p=Math.min(100,s/5*100);
+  document.getElementById("seriesProgress").innerHTML=`<div class="small">Réussites : ${s} ${s>=5?"— série bien travaillée ✅":"— objectif conseillé : 5"}</div><div class="level-progress"><div style="width:${p}%"></div></div>`;
 }
 
-/* =========================================================
-   RAISONNEMENT
-   ========================================================= */
-
-function showRootReasonHint(){
-
-  document
-  .getElementById(
-    "rootReasonFeedback"
-  )
-  .innerHTML=`
-
-    <div class="notice warn">
-
-      Calcule d'abord Δ.
-      Ensuite utilise x₁x₂=c/a
-      et x₁+x₂=−b/a.
-
-    </div>
-  `;
+function reasonRootsHint(){
+  document.getElementById("reasonRootsFeedback").innerHTML=`<div class="notice warn">Calcule Δ, puis utilise x₁x₂=c/a et x₁+x₂=−b/a.</div>`;
+}
+function reasonRootsCorrection(){
+  document.getElementById("reasonRootsFeedback").innerHTML=`<div class="notice ok"><strong>Correction :</strong><br>Δ=(−7)²−4×1×10=9&gt;0 : deux racines réelles. Leur produit vaut 10&gt;0 : même signe. Leur somme vaut 7&gt;0 : elles sont toutes les deux positives.</div>`;
+}
+function reasonMHint(){
+  document.getElementById("reasonMFeedback").innerHTML=`<div class="notice warn">Δ=m²−4m=m(m−4).</div>`;
+}
+function reasonMCorrection(){
+  document.getElementById("reasonMFeedback").innerHTML=`<div class="notice ok"><strong>Correction :</strong><br>Δ=m(m−4). Donc Δ&gt;0 pour m&lt;0 ou m&gt;4 ; Δ=0 pour m=0 ou m=4 ; Δ&lt;0 pour 0&lt;m&lt;4.</div>`;
 }
 
-function showRootReasonCorrection(){
-
-  document
-  .getElementById(
-    "rootReasonFeedback"
-  )
-  .innerHTML=`
-
-    <div class="notice ok">
-
-      <strong>Correction :</strong><br><br>
-
-      Pour x²−7x+10=0 :<br>
-
-      a=1, b=−7, c=10.<br><br>
-
-      Δ=(−7)²−4×1×10
-      =49−40
-      =9&gt;0.<br><br>
-
-      Il existe donc deux racines réelles distinctes.<br><br>
-
-      Leur produit vaut :<br>
-
-      x₁x₂=c/a=10&gt;0.<br><br>
-
-      Les deux racines ont donc le même signe.<br><br>
-
-      Leur somme vaut :<br>
-
-      x₁+x₂=−b/a=7&gt;0.<br><br>
-
-      Deux nombres de même signe dont la somme est positive
-      sont tous les deux positifs.<br><br>
-
-      <strong>
-      Conclusion : l'équation possède deux racines réelles strictement positives.
-      </strong>
-
-    </div>
-  `;
-}
-
-function showParameterHint(){
-
-  document
-  .getElementById(
-    "parameterFeedback"
-  )
-  .innerHTML=`
-
-    <div class="notice warn">
-
-      Ici a=1, b=m et c=m.<br>
-
-      Commence par calculer :
-      Δ=m²−4m.
-
-    </div>
-  `;
-}
-
-function showParameterCorrection(){
-
-  document
-  .getElementById(
-    "parameterFeedback"
-  )
-  .innerHTML=`
-
-    <div class="notice ok">
-
-      <strong>Correction :</strong><br><br>
-
-      x²+mx+m=0.<br><br>
-
-      a=1, b=m et c=m.<br><br>
-
-      Δ=m²−4m
-      =m(m−4).<br><br>
-
-      Étudions son signe.<br><br>
-
-      Δ&gt;0 lorsque
-      m&lt;0 ou m&gt;4.<br>
-
-      Il y a alors deux racines réelles distinctes.<br><br>
-
-      Δ=0 lorsque
-      m=0 ou m=4.<br>
-
-      Il y a alors une racine réelle double.<br><br>
-
-      Δ&lt;0 lorsque
-      0&lt;m&lt;4.<br>
-
-      Il n'y a alors aucune racine réelle.
-
-    </div>
-  `;
-}
-
-/* =========================================================
-   DEFIS
-   ========================================================= */
-
-function setChallengeType(type){
-
-  challengeType=
-    type;
-
-  generateChallenge();
-}
-
+function setChallenge(t){challengeType=t;generateChallenge()}
 function generateChallenge(){
-
-  let type=
-    challengeType;
-
-  if(type==="mixed"){
-
-    type=
-      pick([
-        "rational",
-        "substitution",
-        "radical"
-      ]);
-
-  }
-
-  if(type==="rational"){
-    currentChallenge=
-      makeRationalChallenge();
-  }
-
-  if(type==="substitution"){
-    currentChallenge=
-      makeSubstitutionChallenge();
-  }
-
-  if(type==="radical"){
-    currentChallenge=
-      makeRadicalChallenge();
-  }
-
-  challengeAttempts=0;
-
-  renderChallenge();
+  let t=challengeType==="mixed"?pick(["rational","substitution","radical"]):challengeType;
+  if(t==="rational")currentChallenge=pick([
+    {skill:"Rationnelles",type:"Fraction",kind:"number",answer:3,question:"Résous : (x+1)/(x−1)=2.",hint1:"x≠1.",hint2:"Multiplie par x−1.",correction:"x≠1. x+1=2x−2, donc x=3."},
+    {skill:"Rationnelles",type:"Fraction",kind:"number",answer:0,question:"Résous : (x+2)/(x+3)=2/3.",hint1:"x≠−3.",hint2:"Produit en croix.",correction:"3(x+2)=2(x+3), donc x=0."}
+  ]);
+  if(t==="substitution")currentChallenge=pick([
+    {skill:"Rationnelles",type:"Substitution",kind:"set",answer:[-2,-1,1,2],question:"Résous : x²+4/x²=5.",hint1:"x≠0.",hint2:"Multiplie par x² puis pose t=x².",correction:"x⁴−5x²+4=0. Posons t=x² : t²−5t+4=0, donc t=1 ou 4. Ainsi x=±1 ou ±2."},
+    {skill:"Rationnelles",type:"Substitution",kind:"set",answer:[-.5,1],question:"Résous : (1/x)²+1/x−2=0.",hint1:"x≠0.",hint2:"Pose t=1/x.",correction:"t²+t−2=0=(t−1)(t+2). Donc t=1 ou −2, soit x=1 ou x=−1/2."}
+  ]);
+  if(t==="radical")currentChallenge=pick([
+    {skill:"Irrationnelles",type:"Racine carrée",kind:"set",answer:[2],question:"Résous : √(x+2)=x.",hint1:"Il faut x≥0.",hint2:"Élève au carré puis vérifie.",correction:"x≥0. x+2=x², donc (x−2)(x+1)=0. Seule la solution x=2 convient."},
+    {skill:"Irrationnelles",type:"Racine carrée",kind:"set",answer:[1,2],question:"Résous : √(x−1)+1=x.",hint1:"x≥1.",hint2:"Isole la racine puis élève au carré.",correction:"√(x−1)=x−1. On obtient x=1 ou x=2, et les deux valeurs conviennent."},
+    {skill:"Irrationnelles",type:"Racine carrée",kind:"set",answer:[Math.sqrt(2)],question:"Résous : √(2x+3)=x+1.",hint1:"Il faut x≥−1.",hint2:"Élève au carré puis vérifie.",correction:"2x+3=(x+1)² donne x²−2=0. Les candidats sont ±√2. Comme x≥−1, seule √2 convient."}
+  ]);
+  challengeAttempts=0;challengeValidated=false;challengeCorrectionShown=false;renderChallenge();
 }
-
-function makeRationalChallenge(){
-
-  const mode=
-    randInt(1,3);
-
-  if(mode===1){
-
-    return{
-      skill:"Rationnelles",
-      type:"Fractions",
-      kind:"set",
-      question:
-        "Résous dans ℝ : x + 1/x = 3.",
-      answer:[
-        (3-Math.sqrt(5))/2,
-        (3+Math.sqrt(5))/2
-      ],
-      tolerance:.015,
-      hint1:
-        "Condition : x≠0.",
-      hint2:
-        "Multiplie l'équation par x puis ramène tout dans un membre.",
-      correction:
-        "Condition : x≠0. En multipliant par x : x²+1=3x, donc x²−3x+1=0. Δ=5. Ainsi x=(3−√5)/2 ou x=(3+√5)/2. Les deux valeurs sont non nulles."
-    };
-
-  }
-
-  if(mode===2){
-
-    return{
-      skill:"Rationnelles",
-      type:"Fractions",
-      kind:"number",
-      question:
-        "Résous : (x+1)/(x−1)=2.",
-      answer:3,
-      hint1:
-        "La valeur x=1 est interdite.",
-      hint2:
-        "Multiplie par x−1.",
-      correction:
-        "Condition : x≠1. x+1=2(x−1), donc x+1=2x−2 et x=3. La valeur 3 est autorisée."
-    };
-
-  }
-
-  return{
-    skill:"Rationnelles",
-    type:"Fractions",
-    kind:"number",
-    question:
-      "Résous : (x+2)/(x+3)=2/3.",
-    answer:0,
-    hint1:
-      "La valeur x=−3 est interdite.",
-    hint2:
-      "Effectue un produit en croix.",
-    correction:
-      "Condition : x≠−3. 3(x+2)=2(x+3), donc 3x+6=2x+6, d'où x=0."
-  };
-}
-
-function makeSubstitutionChallenge(){
-
-  const mode=
-    randInt(1,2);
-
-  if(mode===1){
-
-    return{
-      skill:"Rationnelles",
-      type:"Substitution",
-      kind:"set",
-      question:
-        "Résous : x² + 4/x² = 5.",
-      answer:[-2,-1,1,2],
-      hint1:
-        "Condition : x≠0.",
-      hint2:
-        "Multiplie par x² puis pose t=x².",
-      correction:
-        "Condition : x≠0. En multipliant par x² : x⁴−5x²+4=0. Posons t=x². On obtient t²−5t+4=0, donc t=1 ou t=4. Ainsi x=±1 ou x=±2."
-    };
-
-  }
-
-  return{
-    skill:"Rationnelles",
-    type:"Substitution",
-    kind:"set",
-    question:
-      "Résous : (1/x)² + 1/x − 2 = 0.",
-    answer:[-.5,1],
-    hint1:
-      "Condition : x≠0.",
-    hint2:
-      "Pose t=1/x.",
-    correction:
-      "Posons t=1/x. L'équation devient t²+t−2=0=(t−1)(t+2). Donc t=1 ou t=−2. Ainsi 1/x=1 donne x=1 et 1/x=−2 donne x=−1/2."
-  };
-}
-
-function makeRadicalChallenge(){
-
-  const mode=
-    randInt(1,3);
-
-  if(mode===1){
-
-    return{
-      skill:"Irrationnelles",
-      type:"Racine carrée",
-      kind:"set",
-      question:
-        "Résous : √(x+2)=x.",
-      answer:[2],
-      hint1:
-        "Il faut x+2≥0 et le membre droit x doit être ≥0.",
-      hint2:
-        "Élève au carré puis vérifie les solutions obtenues.",
-      correction:
-        "Conditions : x≥0. En élevant au carré : x+2=x², donc x²−x−2=0=(x−2)(x+1). Candidats : 2 et −1. Seul x=2 respecte les conditions et l'équation initiale."
-    };
-
-  }
-
-  if(mode===2){
-
-    return{
-      skill:"Irrationnelles",
-      type:"Racine carrée",
-      kind:"set",
-      question:
-        "Résous : √(x−1)+1=x.",
-      answer:[1,2],
-      hint1:
-        "Commence par isoler la racine : √(x−1)=x−1.",
-      hint2:
-        "Pose éventuellement t=x−1≥0.",
-      correction:
-        "Condition : x≥1. √(x−1)=x−1. En posant t=x−1≥0 : √t=t. En élevant au carré : t=t², donc t=0 ou t=1. Ainsi x=1 ou x=2. Les deux solutions conviennent."
-    };
-
-  }
-
-  return{
-    skill:"Irrationnelles",
-    type:"Racine carrée",
-    kind:"set",
-    question:
-      "Résous : √(2x+3)=x+1.",
-    answer:[-1,2],
-    hint1:
-      "Il faut 2x+3≥0 et x+1≥0.",
-    hint2:
-      "Élève au carré puis vérifie.",
-    correction:
-      "Conditions : x≥−1. En élevant au carré : 2x+3=(x+1)²=x²+2x+1, donc x²−2=0 ? Attention : simplifions correctement : 2x+3=x²+2x+1, donc x²−2=0. Les candidats sont ±√2. Seuls ceux vérifiant x≥−1 restent. Ici −√2<−1 est rejeté, donc x=√2."
-  };
-}
-
-/* Correction of radical generator exact answer */
-function repairRadicalChallenge(){
-
-  if(
-    currentChallenge &&
-    currentChallenge.question===
-    "Résous : √(2x+3)=x+1."
-  ){
-
-    currentChallenge.answer=[
-      Math.sqrt(2)
-    ];
-
-    currentChallenge.correction=
-      "Conditions : 2x+3≥0 et x+1≥0, donc x≥−1. En élevant au carré : 2x+3=(x+1)²=x²+2x+1. Ainsi x²−2=0, donc x=±√2. Comme −√2<−1, cette valeur est interdite. La seule solution est x=√2.";
-
-  }
-}
-
 function renderChallenge(){
-
-  repairRadicalChallenge();
-
-  const ex=
-    currentChallenge;
-
-  document
-  .getElementById(
-    "challengeArea"
-  )
-  .innerHTML=`
-
-    <div class="exercise-meta">
-
-      <span class="badge badge-red">
-        Défi
-      </span>
-
-      <span class="badge badge-purple">
-        ${ex.type}
-      </span>
-
-      <span class="badge badge-blue">
-        ${ex.skill}
-      </span>
-
-    </div>
-
-    <h3>
-      ${ex.question}
-    </h3>
-
-    <div class="answer-row">
-
-      <div>
-
-        <label for="challengeAnswer">
-          Ensemble solution
-        </label>
-
-        <input id="challengeAnswer"
-        type="text"
-        placeholder="${
-          ex.kind==="number"
-          ?"Ta réponse"
-          :"Ex. -2 ; 3"
-        }">
-
-      </div>
-
-      <button class="btn btn-primary"
-      onclick="checkChallenge()">
-        Vérifier
-      </button>
-
-    </div>
-
-    <div class="actions">
-
-      <button class="btn btn-warning"
-      onclick="showChallengeHint(1)">
-        Indice 1
-      </button>
-
-      <button class="btn btn-warning"
-      onclick="showChallengeHint(2)">
-        Indice 2
-      </button>
-
-      <button class="btn btn-secondary"
-      onclick="showChallengeCorrection()">
-        Correction
-      </button>
-
-      <button class="btn btn-purple"
-      onclick="generateChallenge()">
-        Nouveau défi
-      </button>
-
-    </div>
-
-    <div id="challengeFeedback"></div>
-  `;
+  const e=currentChallenge;
+  document.getElementById("challengeArea").innerHTML=`
+  <div class="exercise-meta"><span class="badge badge-red">Défi</span><span class="badge badge-purple">${e.type}</span></div>
+  <h3>${e.question}</h3>
+  <div class="answer-row"><div><label for="challengeAnswer">Réponse</label><input id="challengeAnswer" type="text" placeholder="${e.kind==="set"?"Ex. -2 ; 3":"Ta réponse"}"></div>
+  <button id="challengeCheckBtn" class="btn btn-primary" onclick="checkChallenge()">Vérifier</button></div>
+  <div class="actions"><button class="btn btn-warning" onclick="challengeHint(1)">Indice 1</button><button class="btn btn-warning" onclick="challengeHint(2)">Indice 2</button><button class="btn btn-secondary" onclick="challengeCorrection()">Correction</button><button class="btn btn-purple" onclick="generateChallenge()">Nouveau défi</button></div>
+  <div id="challengeFeedback"></div>`;
 }
-
 function checkChallenge(){
-
+  if(challengeValidated)return;
   challengeAttempts++;
-
-  const value=
-    document
-    .getElementById(
-      "challengeAnswer"
-    )
-    .value;
-
-  let correct=false;
-
-  if(
-    currentChallenge.kind===
-    "number"
-  ){
-
-    correct=
-      numericCorrect(
-        value,
-        currentChallenge.answer,
-        currentChallenge.tolerance||.01
-      );
-
+  const v=document.getElementById("challengeAnswer").value,e=currentChallenge;
+  const correct=e.kind==="number"?numericCorrect(v,e.answer,.015):setCorrect(v,e.answer,.02);
+  if(correct){
+    challengeValidated=true;document.getElementById("challengeCheckBtn").disabled=true;
+    recordResult(e.skill,true,e.type,"challenge");
+    document.getElementById("challengeFeedback").innerHTML=`<div class="notice ok">✅ Correct.</div>`;
   }else{
-
-    const received=
-      parseSet(value);
-
-    if(received){
-
-      const expected=
-        [...currentChallenge.answer]
-        .sort((a,b)=>a-b);
-
-      correct=
-        received.length===
-        expected.length &&
-        received.every(
-          (x,index)=>
-            Math.abs(
-              x-expected[index]
-            )<=(
-              currentChallenge.tolerance||.015
-            )
-        );
-
-    }
-
-  }
-
-  recordResult(
-    currentChallenge.skill,
-    correct,
-    currentChallenge.type,
-    "challenge"
-  );
-
-  document
-  .getElementById(
-    "challengeFeedback"
-  )
-  .innerHTML=
-
-    correct
-    ?`
-      <div class="notice ok">
-        ✅ Correct. Tu as également respecté les valeurs autorisées.
-      </div>
-    `
-    :`
-      <div class="notice warn">
-        Ce n'est pas encore correct.
-        ${
-          challengeAttempts>=2
-          ?" Consulte la correction."
-          :" Vérifie notamment les conditions d'existence ou les valeurs interdites."
-        }
-      </div>
-    `;
-
-  if(
-    !correct &&
-    challengeAttempts>=2
-  ){
-    showChallengeCorrection();
+    recordResult(e.skill,false,e.type,"challenge");
+    document.getElementById("challengeFeedback").innerHTML=`<div class="notice warn">Ce n'est pas encore correct. Vérifie les conditions et les valeurs interdites.</div>`;
+    if(challengeAttempts>=2)challengeCorrection();
   }
 }
-
-function showChallengeHint(level){
-
-  document
-  .getElementById(
-    "challengeFeedback"
-  )
-  .innerHTML=`
-
-    <div class="notice warn">
-
-      <strong>Indice ${level} :</strong>
-
-      ${
-        level===1
-        ?currentChallenge.hint1
-        :currentChallenge.hint2
-      }
-
-    </div>
-  `;
+function challengeHint(n){
+  document.getElementById("challengeFeedback").innerHTML=`<div class="notice warn"><strong>Indice ${n} :</strong> ${n===1?currentChallenge.hint1:currentChallenge.hint2}</div>`;
 }
-
-function showChallengeCorrection(){
-
-  document
-  .getElementById(
-    "challengeFeedback"
-  )
-  .innerHTML+=`
-
-    <div class="notice ok">
-
-      <strong>Correction détaillée :</strong><br>
-
-      ${currentChallenge.correction}
-
-    </div>
-  `;
+function challengeCorrection(){
+  if(challengeCorrectionShown)return;
+  challengeCorrectionShown=true;
+  document.getElementById("challengeFeedback").innerHTML+=`<div class="notice ok"><strong>Correction :</strong><br>${currentChallenge.correction}</div>`;
 }
-
-/* =========================================================
-   QUIZ
-   ========================================================= */
 
 const quizBank=[
-{
-q:"Quelle est la forme standard d'une équation du second degré ?",
-choices:[
-"ax+b=0",
-"ax²+bx+c=0 avec a≠0",
-"a/x+b=0"
-],
-answer:1,
-skill:"Resolution"
-},
-{
-q:"La règle du produit nul permet de résoudre directement…",
-choices:[
-"(x−2)(x+3)=0",
-"x²+x+4=0",
-"√x=3"
-],
-answer:0,
-skill:"Factorisation"
-},
-{
-q:"x²−16 se factorise en…",
-choices:[
-"(x−4)(x+4)",
-"(x−8)(x+2)",
-"(x−4)²"
-],
-answer:0,
-skill:"Factorisation"
-},
-{
-q:"Le discriminant de x²−5x+6=0 vaut…",
-choices:[
-"1",
-"−1",
-"25"
-],
-answer:0,
-skill:"Racines"
-},
-{
-q:"Si Δ<0, l'équation possède…",
-choices:[
-"deux racines réelles",
-"une racine réelle",
-"aucune racine réelle"
-],
-answer:2,
-skill:"Racines"
-},
-{
-q:"Si Δ=0, la racine vaut…",
-choices:[
-"−b/(2a)",
-"b/a",
-"c/a"
-],
-answer:0,
-skill:"Racines"
-},
-{
-q:"Le produit des racines vaut…",
-choices:[
-"−b/a",
-"c/a",
-"b²−4ac"
-],
-answer:1,
-skill:"Racines"
-},
-{
-q:"La somme des racines vaut…",
-choices:[
-"−b/a",
-"c/a",
-"−c/b"
-],
-answer:0,
-skill:"Racines"
-},
-{
-q:"Deux racines de signes opposés ont nécessairement…",
-choices:[
-"un produit négatif",
-"une somme nulle",
-"un produit positif"
-],
-answer:0,
-skill:"Racines"
-},
-{
-q:"Deux racines inverses vérifient…",
-choices:[
-"x₁+x₂=1",
-"x₁x₂=1",
-"x₁−x₂=1"
-],
-answer:1,
-skill:"Parametres"
-},
-{
-q:"Pour x²+2x+m=0, Δ vaut…",
-choices:[
-"4−4m",
-"4+4m",
-"m²−4"
-],
-answer:0,
-skill:"Parametres"
-},
-{
-q:"Dans (m−1)x²+(m+1)x+2=0, l'équation cesse d'être du second degré pour…",
-choices:[
-"m=−1",
-"m=0",
-"m=1"
-],
-answer:2,
-skill:"Parametres"
-},
-{
-q:"Si x+y=3 et xy=2, x et y sont les racines de…",
-choices:[
-"t²−3t+2=0",
-"t²+3t+2=0",
-"t²−2t+3=0"
-],
-answer:0,
-skill:"Systemes"
-},
-{
-q:"Avant de résoudre x+1/x=3, il faut imposer…",
-choices:[
-"x≠0",
-"x>0",
-"x≠3"
-],
-answer:0,
-skill:"Rationnelles"
-},
-{
-q:"Dans une équation avec √(x−2), il faut d'abord imposer…",
-choices:[
-"x−2≥0",
-"x−2≠0",
-"x−2≤0"
-],
-answer:0,
-skill:"Irrationnelles"
-},
-{
-q:"Après avoir élevé au carré une équation irrationnelle, il faut…",
-choices:[
-"vérifier les solutions dans l'équation initiale",
-"accepter toutes les solutions",
-"changer automatiquement leur signe"
-],
-answer:0,
-skill:"Irrationnelles"
-},
-{
-q:"Pour x⁴−5x²+4=0, une substitution utile est…",
-choices:[
-"t=x²",
-"t=x+1",
-"t=1/x"
-],
-answer:0,
-skill:"Rationnelles"
-},
-{
-q:"x²+5x=0 donne…",
-choices:[
-"x=0 ou x=−5",
-"x=5 uniquement",
-"x=0 ou x=5"
-],
-answer:0,
-skill:"Factorisation"
-},
-{
-q:"x²−1=0 donne…",
-choices:[
-"x=−1 ou x=1",
-"x=1 uniquement",
-"x=0 ou x=1"
-],
-answer:0,
-skill:"Resolution"
-},
-{
-q:"Pour garantir deux racines strictement positives, une condition utile est…",
-choices:[
-"Δ>0, produit>0, somme>0",
-"Δ<0",
-"produit<0"
-],
-answer:0,
-skill:"Parametres"
-}
+["La forme standard d'une équation du second degré est…",["ax+b=0","ax²+bx+c=0 avec a≠0","a/x+b=0"],1,"Resolution"],
+["La règle du produit nul résout directement…",["(x−2)(x+3)=0","x²+x+4=0","√x=3"],0,"Factorisation"],
+["x²−16 se factorise en…",["(x−4)(x+4)","(x−8)(x+2)","(x−4)²"],0,"Factorisation"],
+["Δ de x²−5x+6 vaut…",["1","−1","25"],0,"Racines"],
+["Si Δ<0…",["deux racines","une racine","aucune racine réelle"],2,"Racines"],
+["Si Δ=0, la racine vaut…",["−b/(2a)","b/a","c/a"],0,"Racines"],
+["Le produit des racines vaut…",["−b/a","c/a","b²−4ac"],1,"Racines"],
+["La somme des racines vaut…",["−b/a","c/a","−c/b"],0,"Racines"],
+["Deux racines de signes opposés ont…",["un produit négatif","une somme nulle","un produit positif"],0,"Racines"],
+["Deux racines inverses vérifient…",["x₁+x₂=1","x₁x₂=1","x₁−x₂=1"],1,"Parametres"],
+["Pour x²+2x+m=0, Δ vaut…",["4−4m","4+4m","m²−4"],0,"Parametres"],
+["Dans (m−1)x²+(m+1)x+2=0, le second degré disparaît pour…",["m=−1","m=0","m=1"],2,"Parametres"],
+["Si x+y=3 et xy=2, x et y sont racines de…",["t²−3t+2=0","t²+3t+2=0","t²−2t+3=0"],0,"Systemes"],
+["Avant x+1/x=3, il faut imposer…",["x≠0","x>0","x≠3"],0,"Rationnelles"],
+["Avec √(x−2), il faut imposer…",["x−2≥0","x−2≠0","x−2≤0"],0,"Irrationnelles"],
+["Après avoir élevé au carré…",["il faut vérifier","toutes les solutions sont valides","on change les signes"],0,"Irrationnelles"],
+["Pour x⁴−5x²+4=0, une substitution utile est…",["t=x²","t=x+1","t=1/x"],0,"Rationnelles"],
+["x²+5x=0 donne…",["x=0 ou x=−5","x=5","x=0 ou x=5"],0,"Factorisation"],
+["x²−1=0 donne…",["x=−1 ou x=1","x=1","x=0 ou x=1"],0,"Resolution"],
+["Deux racines positives exigent notamment…",["Δ>0, produit>0, somme>0","Δ<0","produit<0"],0,"Parametres"]
 ];
 
 function startQuiz(){
-
-  currentQuiz=
-    [...quizBank]
-    .sort(
-      ()=>Math.random()-.5
-    )
-    .slice(0,16);
-
-  quizAnswers=
-    new Array(
-      currentQuiz.length
-    )
-    .fill(null);
-
-  renderQuiz();
+  const count=Math.min(Number(state.settings.quizCount)||16,quizBank.length);
+  currentQuiz=[...quizBank].sort(()=>Math.random()-.5).slice(0,count);
+  quizAnswers=new Array(currentQuiz.length).fill(null);quizFinished=false;renderQuiz();
 }
-
 function renderQuiz(){
-
-  document
-  .getElementById(
-    "quizArea"
-  )
-  .innerHTML=
-
-    currentQuiz
-    .map(
-      (item,index)=>`
-
-        <div class="quiz-question">
-
-          <span class="badge badge-blue">
-            ${item.skill}
-          </span>
-
-          <p>
-            <strong>
-              ${index+1}. ${item.q}
-            </strong>
-          </p>
-
-          ${item.choices
-            .map(
-              (choice,choiceIndex)=>`
-
-                <button
-                type="button"
-                id="quiz_${index}_${choiceIndex}"
-                class="quiz-option"
-                onclick="selectQuizAnswer(${index},${choiceIndex})">
-
-                  ${choice}
-
-                </button>
-
-              `
-            )
-            .join("")}
-
-        </div>
-
-      `
-    )
-    .join("")+
-
-    `
-
-      <button class="btn btn-success"
-      onclick="finishQuiz()">
-
-        Corriger mon quiz
-
-      </button>
-
-      <div id="quizResult"></div>
-
-    `;
+  document.getElementById("quizArea").innerHTML=currentQuiz.map((q,i)=>`
+  <div class="quiz-question"><span class="badge badge-blue">${q[3]}</span><p><strong>${i+1}. ${q[0]}</strong></p>
+  ${q[1].map((c,j)=>`<button class="quiz-option" id="quiz_${i}_${j}" onclick="chooseQuiz(${i},${j})">${c}</button>`).join("")}</div>`).join("")+
+  `<button id="finishQuizBtn" class="btn btn-success" onclick="finishQuiz()">Corriger le quiz</button><div id="quizResult"></div>`;
 }
-
-function selectQuizAnswer(
-  questionIndex,
-  choiceIndex
-){
-
-  quizAnswers[
-    questionIndex
-  ]=
-    choiceIndex;
-
-  currentQuiz[
-    questionIndex
-  ]
-  .choices
-  .forEach(
-    (_,index)=>{
-
-      document
-      .getElementById(
-        `quiz_${questionIndex}_${index}`
-      )
-      .classList.toggle(
-        "selected",
-        index===choiceIndex
-      );
-
-    }
-  );
+function chooseQuiz(i,j){
+  if(quizFinished)return;
+  quizAnswers[i]=j;
+  currentQuiz[i][1].forEach((_,k)=>document.getElementById(`quiz_${i}_${k}`).classList.toggle("selected",k===j));
 }
-
 function finishQuiz(){
-
-  if(
-    currentQuiz.length===0
-  ){
-    return;
-  }
-
-  let score=0;
-
-  const skills={};
-
-  currentQuiz
-  .forEach(
-    (item,index)=>{
-
-      const correct=
-        quizAnswers[index]===
-        item.answer;
-
-      if(correct){
-        score++;
-      }
-
-      if(!skills[item.skill]){
-        skills[item.skill]=[0,0];
-      }
-
-      skills[item.skill][1]++;
-
-      if(correct){
-        skills[item.skill][0]++;
-      }
-
-    }
-  );
-
-  const note=
-    Math.round(
-      score/
-      currentQuiz.length*
-      20*
-      10
-    )/10;
-
-  state.quizBest=
-    Math.max(
-      state.quizBest,
-      note
-    );
-
-  state.completed.quiz=true;
-
-  Object.entries(
-    skills
-  )
-  .forEach(
-    ([skill,result])=>{
-
-      if(!state.skills[skill]){
-        state.skills[skill]=[0,0];
-      }
-
-      state.skills[skill][0]+=
-        result[0];
-
-      state.skills[skill][1]+=
-        result[1];
-
-    }
-  );
-
-  state.history.unshift({
-    date:
-      new Date()
-      .toLocaleString("fr-BE"),
-    skill:"Quiz",
-    success:note>=10,
-    label:
-      `Quiz final : ${formatNumber(note)}/20`
+  if(quizFinished||!currentQuiz.length)return;
+  quizFinished=true;document.getElementById("finishQuizBtn").disabled=true;
+  let score=0;const skillResults={};
+  currentQuiz.forEach((q,i)=>{
+    const ok=quizAnswers[i]===q[2];if(ok)score++;
+    const s=q[3];if(!skillResults[s])skillResults[s]=[0,0];
+    skillResults[s][1]++;if(ok)skillResults[s][0]++;
   });
-
+  const note=Math.round(score/currentQuiz.length*200)/10;
+  state.quizBest=Math.max(state.quizBest,note);state.completed.quiz=true;
+  Object.entries(skillResults).forEach(([s,r])=>{
+    if(!state.skills[s])state.skills[s]=[0,0];
+    state.skills[s][0]+=r[0];state.skills[s][1]+=r[1];
+  });
+  state.history.unshift({date:new Date().toLocaleString("fr-BE"),skill:"Quiz",success:note>=10,label:`Quiz : ${formatNumber(note)}/20`});
   saveState();
-
-  const weakest=
-    Object.entries(
-      skills
-    )
-    .sort(
-      (a,b)=>
-        a[1][0]/a[1][1]-
-        b[1][0]/b[1][1]
-    )[0];
-
-  document
-  .getElementById(
-    "quizResult"
-  )
-  .innerHTML=`
-
-    <div class="panel"
-    style="margin-top:18px">
-
-      <h3>
-        Note :
-        ${formatNumber(note)}/20
-      </h3>
-
-      <table>
-
-        <thead>
-          <tr>
-            <th>Compétence</th>
-            <th>Réussite</th>
-          </tr>
-        </thead>
-
-        <tbody>
-
-          ${Object.entries(skills)
-            .map(
-              ([skill,result])=>`
-
-                <tr>
-                  <td>${skill}</td>
-                  <td>${result[0]}/${result[1]}</td>
-                </tr>
-
-              `
-            )
-            .join("")}
-
-        </tbody>
-
-      </table>
-
-      <div class="notice ${note>=10?"ok":"warn"}">
-
-        ${
-          note>=16
-          ?"Très bonne maîtrise des différentes familles d'équations."
-          :note>=12
-            ?"Bonne maîtrise. Quelques méthodes restent à automatiser."
-            :note>=10
-              ?"Les bases sont acquises mais certaines familles doivent être retravaillées."
-              :"Reprends le cours et les séries correspondant aux compétences les moins réussies."
-        }
-
-        <br>
-
-        Priorité de révision :
-        <strong>
-          ${weakest[0]}
-        </strong>.
-
-      </div>
-
-    </div>
-  `;
+  const weak=Object.entries(skillResults).sort((a,b)=>a[1][0]/a[1][1]-b[1][0]/b[1][1])[0];
+  document.getElementById("quizResult").innerHTML=`<div class="panel" style="margin-top:18px"><h3>Note : ${formatNumber(note)}/20</h3>
+  <table><thead><tr><th>Compétence</th><th>Résultat</th></tr></thead><tbody>${Object.entries(skillResults).map(([s,r])=>`<tr><td>${s}</td><td>${r[0]}/${r[1]}</td></tr>`).join("")}</tbody></table>
+  <div class="notice ${note>=10?"ok":"warn"}">${note>=16?"Très bonne maîtrise.":note>=12?"Bonne maîtrise globale.":note>=10?"Les bases sont acquises.":"Reprends les modules les moins maîtrisés."}<br>Priorité : <strong>${weak[0]}</strong>.</div></div>`;
 }
-
-/* =========================================================
-   PROGRES
-   ========================================================= */
 
 function renderProgress(){
-
-  const rate=
-    state.attempts
-      ?Math.round(
-          state.successes/
-          state.attempts*
-          100
-        )
-      :0;
-
-  document
-  .getElementById(
-    "stats"
-  )
-  .innerHTML=`
-
-    <div class="card stat">
-      Tentatives
-      <strong>${state.attempts}</strong>
-    </div>
-
-    <div class="card stat">
-      Réussites
-      <strong>${state.successes}</strong>
-    </div>
-
-    <div class="card stat">
-      Taux de réussite
-      <strong>${rate}%</strong>
-    </div>
-
-    <div class="card stat">
-      Meilleur quiz
-      <strong>${formatNumber(state.quizBest)}/20</strong>
-    </div>
-  `;
-
-  document
-  .getElementById(
-    "skillsProgress"
-  )
-  .innerHTML=
-
-    Object.entries(
-      state.skills
-    )
-    .map(
-      ([skill,result])=>{
-
-        const pct=
-          result[1]
-          ?Math.round(
-              result[0]/
-              result[1]*
-              100
-            )
-          :0;
-
-        return`
-
-          <p>
-            <strong>${skill}</strong>
-            — ${pct}%
-          </p>
-
-          <div class="bar">
-
-            <div style="width:${pct}%"></div>
-
-          </div>
-
-        `;
-
-      }
-    )
-    .join("");
-
-  const attempted=
-    Object.entries(
-      state.skills
-    )
-    .filter(
-      ([,result])=>
-        result[1]>0
-    )
-    .map(
-      ([skill,result])=>({
-        skill,
-        rate:
-          result[0]/
-          result[1]
-      })
-    )
-    .sort(
-      (a,b)=>
-        a.rate-b.rate
-    );
-
-  if(
-    attempted.length===0
-  ){
-
-    document
-    .getElementById(
-      "recommendations"
-    )
-    .innerHTML=`
-
-      <div class="notice info">
-        Fais quelques exercices pour obtenir des recommandations.
-      </div>
-
-    `;
-
-  }else{
-
-    const weak=
-      attempted[0].skill;
-
-    const advice={
-
-      Resolution:
-      "Revois la mise sous forme standard et le choix entre factorisation et discriminant.",
-
-      Factorisation:
-      "Travaille le facteur commun, la différence de carrés et les trinômes factorisables.",
-
-      Racines:
-      "Revois Δ, la somme −b/a et le produit c/a.",
-
-      Parametres:
-      "Travaille les conditions sur Δ et les cas où un coefficient peut s'annuler.",
-
-      Systemes:
-      "Utilise les relations somme-produit et la construction d'une équation en t.",
-
-      Rationnelles:
-      "Commence toujours par les valeurs interdites puis simplifie l'équation.",
-
-      Irrationnelles:
-      "Écris les conditions d'existence et vérifie les solutions après élévation au carré."
-
-    };
-
-    document
-    .getElementById(
-      "recommendations"
-    )
-    .innerHTML=`
-
-      <div class="notice info">
-
-        À retravailler en priorité :
-        <strong>${weak}</strong>.
-
-        <br>
-
-        ${advice[weak]}
-
-      </div>
-    `;
-  }
-
-  document
-  .getElementById(
-    "seriesDashboard"
-  )
-  .innerHTML=`
-
-    <table>
-
-      <thead>
-
-        <tr>
-          <th>Famille</th>
-          <th>Réussites</th>
-        </tr>
-
-      </thead>
-
-      <tbody>
-
-        <tr>
-          <td>Série 1 — Résolution</td>
-          <td>${state.seriesSuccess[1]||0}</td>
-        </tr>
-
-        <tr>
-          <td>Série 2 — Factorisation</td>
-          <td>${state.seriesSuccess[2]||0}</td>
-        </tr>
-
-        <tr>
-          <td>Série 3 — Racines</td>
-          <td>${state.seriesSuccess[3]||0}</td>
-        </tr>
-
-        <tr>
-          <td>Séries 4–6 — Paramètres</td>
-          <td>${state.seriesSuccess[4]||0}</td>
-        </tr>
-
-        <tr>
-          <td>Série 7 — Systèmes</td>
-          <td>${state.seriesSuccess[5]||0}</td>
-        </tr>
-
-        <tr>
-          <td>Série 8 — Discussion</td>
-          <td>${state.seriesSuccess[6]||0}</td>
-        </tr>
-
-        <tr>
-          <td>Série 9 — Défis</td>
-          <td>${state.seriesSuccess.challenge||0}</td>
-        </tr>
-
-      </tbody>
-
-    </table>
-  `;
-
-  document
-  .getElementById(
-    "history"
-  )
-  .innerHTML=
-
-    state.history.length
-    ?`
-
-      <table>
-
-        <thead>
-
-          <tr>
-            <th>Date</th>
-            <th>Activité</th>
-            <th>Résultat</th>
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-          ${state.history
-            .slice(0,15)
-            .map(
-              item=>`
-
-                <tr>
-
-                  <td>
-                    ${item.date}
-                  </td>
-
-                  <td>
-                    ${item.label}
-                  </td>
-
-                  <td>
-                    ${item.success?"✅":"🔄"}
-                  </td>
-
-                </tr>
-
-              `
-            )
-            .join("")}
-
-        </tbody>
-
-      </table>
-
-    `
-    :`
-
-      <p>
-        Aucune activité enregistrée.
-      </p>
-
-    `;
+  const rate=state.attempts?Math.round(state.successes/state.attempts*100):0;
+  document.getElementById("stats").innerHTML=`
+  <div class="card stat">Tentatives<strong>${state.attempts}</strong></div>
+  <div class="card stat">Réussites<strong>${state.successes}</strong></div>
+  <div class="card stat">Taux<strong>${rate}%</strong></div>
+  <div class="card stat">Meilleur quiz<strong>${formatNumber(state.quizBest)}/20</strong></div>`;
+  document.getElementById("skillsProgress").innerHTML=Object.entries(state.skills).map(([s,r])=>{
+    const p=r[1]?Math.round(r[0]/r[1]*100):0;
+    return `<p><strong>${s}</strong> — ${p}%</p><div class="bar"><div style="width:${p}%"></div></div>`;
+  }).join("");
+  const attempted=Object.entries(state.skills).filter(([,r])=>r[1]>0).map(([s,r])=>[s,r[0]/r[1]]).sort((a,b)=>a[1]-b[1]);
+  const advice={
+    Resolution:"Revois la mise sous forme standard et le discriminant.",
+    Factorisation:"Travaille les identités remarquables et le produit nul.",
+    Racines:"Revois Δ, la somme et le produit des racines.",
+    Parametres:"Travaille les conditions sur Δ et les cas dégénérés.",
+    Systemes:"Utilise la méthode somme-produit.",
+    Rationnelles:"Commence toujours par les valeurs interdites.",
+    Irrationnelles:"Écris les conditions d'existence et vérifie après élévation au carré."
+  };
+  document.getElementById("recommendations").innerHTML=attempted.length?`<div class="notice info">À retravailler : <strong>${attempted[0][0]}</strong>.<br>${advice[attempted[0][0]]}</div>`:`<div class="notice info">Commence les exercices pour obtenir des conseils.</div>`;
+  document.getElementById("seriesDashboard").innerHTML=`<table><thead><tr><th>Famille</th><th>Réussites</th></tr></thead><tbody>
+  <tr><td>Série 1 — Résolution</td><td>${state.seriesSuccess[1]||0}</td></tr>
+  <tr><td>Série 2 — Factorisation</td><td>${state.seriesSuccess[2]||0}</td></tr>
+  <tr><td>Série 3 — Racines</td><td>${state.seriesSuccess[3]||0}</td></tr>
+  <tr><td>Séries 4–6 — Paramètres</td><td>${state.seriesSuccess[4]||0}</td></tr>
+  <tr><td>Série 7 — Systèmes</td><td>${state.seriesSuccess[5]||0}</td></tr>
+  <tr><td>Série 8 — Discussion</td><td>${state.seriesSuccess[6]||0}</td></tr>
+  <tr><td>Série 9 — Défis</td><td>${state.seriesSuccess.challenge||0}</td></tr></tbody></table>`;
+  document.getElementById("history").innerHTML=state.history.length?`<table><thead><tr><th>Date</th><th>Activité</th><th>Résultat</th></tr></thead><tbody>${state.history.slice(0,20).map(i=>`<tr><td>${i.date}</td><td>${i.label}</td><td>${i.success?"✅":"🔄"}</td></tr>`).join("")}</tbody></table>`:"<p>Aucune activité enregistrée.</p>";
 }
 
-/* =========================================================
-   INITIALISATION
-   ========================================================= */
+function teacherLogin(){
+  const p=document.getElementById("teacherPassword").value;
+  if(p===CONFIG.teacherPassword){
+    teacherUnlocked=true;
+    document.getElementById("teacherLogin").classList.add("hidden");
+    document.getElementById("teacherPanel").classList.remove("hidden");
+    renderTeacher();
+  }else{
+    document.getElementById("teacherLoginFeedback").innerHTML=`<div class="notice error">Mot de passe incorrect.</div>`;
+  }
+}
+function teacherLogout(){
+  teacherUnlocked=false;
+  document.getElementById("teacherLogin").classList.remove("hidden");
+  document.getElementById("teacherPanel").classList.add("hidden");
+  document.getElementById("teacherPassword").value="";
+}
+function renderTeacher(){
+  const rate=state.attempts?Math.round(state.successes/state.attempts*100):0;
+  document.getElementById("tAttempts").textContent=state.attempts;
+  document.getElementById("tSuccess").textContent=state.successes;
+  document.getElementById("tRate").textContent=rate+"%";
+  document.getElementById("tQuiz").textContent=formatNumber(state.quizBest)+"/20";
+  document.getElementById("teacherDefaultDifficulty").value=String(state.settings.difficulty);
+  document.getElementById("teacherQuizCount").value=String(state.settings.quizCount);
+  document.getElementById("moduleToggles").innerHTML=CONFIG.modules.map(m=>`
+  <label class="module-toggle"><input type="checkbox" id="mod_${m}" ${state.settings.activeModules[m]!==false?"checked":""}> ${m}</label>`).join("");
+  const weak=Object.entries(state.skills).map(([s,r])=>[s,r[1]?Math.round(r[0]/r[1]*100):null]).filter(x=>x[1]!==null).sort((a,b)=>a[1]-b[1]);
+  document.getElementById("teacherWeaknesses").innerHTML=weak.length?`<table><thead><tr><th>Compétence</th><th>Réussite</th></tr></thead><tbody>${weak.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}%</td></tr>`).join("")}</tbody></table>`:"<p>Pas encore de données.</p>";
+  document.getElementById("teacherResults").innerHTML=`<table><thead><tr><th>Compétence</th><th>Correct</th><th>Total</th><th>Taux</th></tr></thead><tbody>${Object.entries(state.skills).map(([s,r])=>`<tr><td>${s}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[1]?Math.round(r[0]/r[1]*100):0}%</td></tr>`).join("")}</tbody></table>`;
+}
+function saveTeacherSettings(){
+  state.settings.difficulty=Number(document.getElementById("teacherDefaultDifficulty").value);
+  state.settings.quizCount=Number(document.getElementById("teacherQuizCount").value);
+  CONFIG.modules.forEach(m=>state.settings.activeModules[m]=document.getElementById("mod_"+m).checked);
+  document.getElementById("difficulty").value=String(state.settings.difficulty);
+  saveState();updateGlobalProgress();alert("Réglages enregistrés.");
+}
+function toggleProjection(){
+  projectionMode=!projectionMode;
+  document.documentElement.classList.toggle("projection",projectionMode);
+  if(projectionMode)alert("Mode projection activé.");
+}
+function exportCSV(){
+  const rows=[["date","activité","compétence","résultat"]];
+  state.history.forEach(h=>rows.push([h.date,h.label,h.skill,h.success?"réussi":"à retravailler"]));
+  const csv=rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(";")).join("\n");
+  const blob=new Blob(["\uFEFF"+csv],{type:"text/csv;charset=utf-8"});
+  const url=URL.createObjectURL(blob),a=document.createElement("a");
+  a.href=url;a.download="resultats_equations_second_degre.csv";a.click();URL.revokeObjectURL(url);
+}
+function resetProgress(){
+  if(!confirm("Réinitialiser tous les résultats et l'historique ?"))return;
+  const settings=state.settings;
+  const fresh=defaultState();fresh.settings=settings;
+  Object.keys(state).forEach(k=>delete state[k]);Object.assign(state,fresh);
+  saveState();renderTeacher();renderProgress();alert("Résultats réinitialisés.");
+}
+
+function generatePrintable(){
+  const d=Number(document.getElementById("printDifficulty").value);
+  const questions=[],corr=[];
+  const makers=[makeSeries1,makeSeries2,makeSeries3,makeSeries4,makeSeries5,makeSeries6];
+  for(let i=0;i<10;i++){
+    const e=makers[i%makers.length](d);
+    questions.push(`<div class="print-question"><strong>${i+1}.</strong> ${e.question}<br><br>Réponse : ____________________________________________</div>`);
+    corr.push(`<div class="print-question"><strong>${i+1}.</strong> ${e.correction}</div>`);
+  }
+  document.getElementById("printableArea").classList.remove("hidden");
+  document.getElementById("printableContent").innerHTML=`<h3>Exercices</h3>${questions.join("")}<hr><h3>Corrigé</h3>${corr.join("")}`;
+}
+function printPrintable(){
+  const content=document.getElementById("printableContent").innerHTML;
+  if(!content){alert("Générez d'abord les exercices.");return}
+  const page=document.getElementById("printPage");
+  page.innerHTML=`<h2>Équations du second degré — Série d'entraînement</h2>${content}`;
+  const oldActive=document.querySelector(".page.active");
+  if(oldActive)oldActive.classList.remove("active");
+  page.classList.add("active");
+  window.print();
+  page.classList.remove("active");
+  document.getElementById("teacher").classList.add("active");
+}
 
 function init(){
-
+  document.getElementById("difficulty").value=String(state.settings.difficulty);
   updateGlobalProgress();
-
   renderVideo();
-
   loadVoices();
-
-  if(
-    "speechSynthesis" in window
-  ){
-
-    speechSynthesis.onvoiceschanged=
-      loadVoices;
-
-  }
-
+  if("speechSynthesis" in window)speechSynthesis.onvoiceschanged=loadVoices;
   generateExercise();
-
   generateChallenge();
 }
-
 init();
-
 </script>
 
 </body>
